@@ -1,7 +1,13 @@
 import os
+import sys
+import time
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
 os.environ["TRANSFORMERS_ALLOW_TORCH_LOAD"] = "1"
 
-import time
 
 def log(msg: str):
     now = time.strftime("%H:%M:%S")
@@ -27,6 +33,9 @@ from evaluation.rouge_l import compute_rouge_l
 from reports.results_logger import aggregate_results, print_results_table
 
 
+# =========================
+# CONFIG
+# =========================
 DEV_MODE = True
 SAMPLE_LIMIT = 1 if DEV_MODE else 10
 
@@ -42,7 +51,7 @@ def load_data():
         samples = load_longbench_subset(name, limit=SAMPLE_LIMIT)
         subset_samples.append(samples)
 
-    return subset_samples
+    return subsets, subset_samples
 
 
 def prepare_corpus(subset_samples):
@@ -56,7 +65,8 @@ def prepare_corpus(subset_samples):
         overlap=CHUNK_OVERLAP
     )
 
-    chunks = chunks[:5]
+    # Debug mode: limit chunks
+    chunks = chunks[:1]
     log(f"Using {len(chunks)} chunks only (debug mode)")
 
     return chunks, qa_pairs
@@ -73,8 +83,8 @@ def initialize_systems(chunks):
     graph_rag.build_graph(chunks)
     log("GraphRAG graph built")
 
-    log("Loading Qwen LLM on GPU")
-    llm = QwenLLM(mock_mode=False)
+    log("Loading Qwen LLM")
+    llm = QwenLLM(mock_mode=True)
     log("Qwen LLM ready")
 
     return llm, vector_rag, graph_rag
@@ -83,22 +93,38 @@ def initialize_systems(chunks):
 def run_experiment():
     log("Starting experiment")
 
-    subset_samples = load_data()
+    dataset_names, subset_samples = load_data()
     chunks, qa_pairs = prepare_corpus(subset_samples)
 
-    qa_pairs = qa_pairs[:1]
-    log("Using 1 QA only (debug mode)")
+    # ------------------------------
+    # ✅ FIX: keep ONE QA PER DATASET
+    # ------------------------------
+    filtered_qas = []
+    seen_datasets = set()
+
+    for qa in qa_pairs:
+        ds = qa.get("dataset")
+        if ds not in seen_datasets:
+            filtered_qas.append(qa)
+            seen_datasets.add(ds)
+
+        if DEV_MODE and len(filtered_qas) == len(dataset_names):
+            break
+
+    qa_pairs = filtered_qas
+    log(f"Using {len(qa_pairs)} QAs (1 per dataset, debug mode)")
 
     llm, vector_rag, graph_rag = initialize_systems(chunks)
 
     results = []
 
     for idx, qa in enumerate(qa_pairs, start=1):
-        log(f"Processing QA {idx}/{len(qa_pairs)}")
+        log(f"Processing QA {idx}/{len(qa_pairs)} ({qa['dataset']})")
 
         question = qa["question"]
         ground_truth = qa["answer"]
 
+        # -------- VectorRAG --------
         log("VectorRAG retrieval started")
         vector_chunks = vector_rag.retrieve(question, top_k=TOP_K)
         log("VectorRAG retrieval done")
@@ -110,7 +136,8 @@ def run_experiment():
         vector_f1 = compute_f1(vector_answer, ground_truth)
         vector_rouge = compute_rouge_l(vector_answer, ground_truth)
 
-        log("GraphRAG retrieval started (this can take time)")
+        # -------- GraphRAG --------
+        log("GraphRAG retrieval started")
         graph_context = graph_rag.retrieve(question, top_k=TOP_K)
         log("GraphRAG retrieval done")
 
@@ -122,7 +149,7 @@ def run_experiment():
         graph_rouge = compute_rouge_l(graph_answer, ground_truth)
 
         results.append({
-            "dataset": qa.get("dataset", "Unknown"),
+            "dataset": qa["dataset"],
             "question": question,
             "vector_f1": vector_f1,
             "vector_rouge": vector_rouge,

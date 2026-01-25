@@ -58,7 +58,7 @@ class GraphRAG:
         print("[GraphRAG] retrieve() START", flush=True)
 
         param = QueryParam(
-            mode="gloabl",
+            mode="global",
             top_k=top_k
         )
 
