@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# ML / AI artifacts
+models/
+checkpoints/
+embeddings/
+indexes/
+cache/
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# HuggingFace
+.huggingface/
+hf_cache/
+
+# Logs & outputs
+logs/
+outputs/
+results/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# WSL
+*.swp
+
+# Datasets
+data/longbench_raw/
+

@@ -1,0 +1,9 @@
+numpy
+torch
+transformers
+accelerate
+sentencepiece
+einops
+torchvision
+torchaudio
+nano-graphrag
