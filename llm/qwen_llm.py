@@ -53,7 +53,7 @@ class QwenLLM:
 
     def generate(self, prompt: str) -> str:
         """
-        Generate text from Qwen with SAFE, BOUNDED decoding.
+        Generate text from Qwen with SAFE, BOUNDED, TIME-EFFICIENT decoding.
         """
 
         if self.mock_mode:
@@ -62,13 +62,18 @@ class QwenLLM:
                 "The actual answer would appear here."
             )
 
+        # 🔥 CRITICAL FIXES:
+        # 1. Hard cap input tokens
+        # 2. Disable padding for single-sample generation
         inputs = self.tokenizer(
             prompt,
             return_tensors="pt",
             truncation=True,
-            padding=True
+            max_length=512,   # HARD INPUT CAP (most important)
+            padding=False
         ).to(self.device)
 
+        # Hard cap output tokens
         max_tokens = min(LLM_MAX_TOKENS, 128)
 
         with torch.no_grad():
@@ -76,13 +81,16 @@ class QwenLLM:
                 **inputs,
                 max_new_tokens=max_tokens,
                 do_sample=False,
-                temperature=0.0,
+                use_cache=True,  # speeds up decoding
                 eos_token_id=self.tokenizer.eos_token_id,
                 pad_token_id=self.tokenizer.eos_token_id,
             )
 
+        # Decode only newly generated tokens
+        generated_tokens = output[0][inputs["input_ids"].shape[-1]:]
+
         decoded = self.tokenizer.decode(
-            output[0][inputs["input_ids"].shape[-1]:],
+            generated_tokens,
             skip_special_tokens=True
         )
 

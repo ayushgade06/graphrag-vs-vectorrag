@@ -1,6 +1,5 @@
 from typing import List
 from config.experiment_config import MAX_CONTEXT_TOKENS
-
 from sentence_transformers import SentenceTransformer
 
 
@@ -24,7 +23,7 @@ class LocalEmbedding:
 
 class GraphRAG:
     """
-    GraphRAG wrapper for nano-graphrag v0.0.8.2
+    Safe GraphRAG wrapper with HARD context caps
     """
 
     def __init__(self):
@@ -64,8 +63,11 @@ class GraphRAG:
 
         results = self.engine.query(query, param)
 
+        # HARD CAP CONTEXT COUNT (critical for speed)
+        results = results[:top_k]
+
         texts = [str(r) for r in results]
-        print(f"[GraphRAG] Retrieved {len(texts)} contexts", flush=True)
+        print(f"[GraphRAG] Retrieved {len(texts)} contexts (capped)", flush=True)
 
         return self._enforce_token_budget(texts)
 
@@ -83,15 +85,13 @@ class GraphRAG:
         return final_context
 
     def generate(self, query: str, retrieved_context: List[str], llm):
+        # Avoid extra whitespace / indentation cost
         context = "\n\n".join(retrieved_context)
 
-        prompt = f"""
-Use the following context to answer the question.
+        prompt = (
+            "Use the following context to answer the question.\n\n"
+            f"Context:\n{context}\n\n"
+            f"Question:\n{query}"
+        )
 
-Context:
-{context}
-
-Question:
-{query}
-"""
         return llm.generate(prompt)

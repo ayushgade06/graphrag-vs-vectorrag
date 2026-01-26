@@ -16,7 +16,6 @@ class VectorRAG:
         """
 
         self.embedding_model_name = embedding_model
-
         self.encoder = SentenceTransformer(self.embedding_model_name, device="cpu")
 
         assert self.encoder.get_sentence_embedding_dimension() == 1024
@@ -37,23 +36,22 @@ class VectorRAG:
             self.embeddings
         )
 
-        top_indices = np.argsort(similarities)[-top_k:][::-1]
-        retrieved = [self.chunks[i] for i in top_indices]
+        # Faster than full argsort, same result for top-k
+        top_indices = np.argpartition(similarities, -top_k)[-top_k:]
+        top_indices = top_indices[np.argsort(similarities[top_indices])[::-1]]
 
+        retrieved = [self.chunks[i] for i in top_indices]
         return self._enforce_token_budget(retrieved)
 
     def generate(self, query: str, retrieved_chunks: List[str], llm):
         context = "\n\n".join(retrieved_chunks)
 
-        prompt = f"""
-Use the following context to answer the question.
+        prompt = (
+            "Use the following context to answer the question.\n\n"
+            f"Context:\n{context}\n\n"
+            f"Question:\n{query}"
+        )
 
-Context:
-{context}
-
-Question:
-{query}
-"""
         return llm.generate(prompt)
 
     def _embed_texts(self, texts: List[str]) -> np.ndarray:
@@ -75,7 +73,6 @@ Question:
             tokens = text.split()
             if token_count + len(tokens) > MAX_CONTEXT_TOKENS:
                 break
-
             final_context.append(text)
             token_count += len(tokens)
 

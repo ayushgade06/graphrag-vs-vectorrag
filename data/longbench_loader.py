@@ -12,44 +12,47 @@ DATASET_FILES = {
 }
 
 
-def load_longbench_subset(
-    subset_name: str,
-    limit: Optional[int] = 10
-) -> List[Dict]:
-    """
-    Load a LongBench subset from local JSONL files.
-
-    Args:
-        subset_name: Name of the LongBench subset.
-        limit: Maximum number of samples to load.
-               If None, loads the entire file.
-
-    Returns:
-        List of standardized QA samples.
-    """
-
+def load_longbench_subset(subset_name: str, limit: Optional[int] = 10):
     if subset_name not in DATASET_FILES:
         raise ValueError(f"Unknown LongBench subset: {subset_name}")
 
     data_file = LONG_BENCH_DATA / DATASET_FILES[subset_name]
-
-    if not data_file.exists():
-        raise FileNotFoundError(f"Missing LongBench file: {data_file}")
-
     samples = []
 
     with open(data_file, "r", encoding="utf-8") as f:
         for line in f:
-            if limit is not None and len(samples) >= limit:
+            if limit and len(samples) >= limit:
                 break
 
             item = json.loads(line)
 
+            if subset_name == "MuSiQue":
+                question = item.get("input", "")
+                context = item.get("context", "")
+                answer = item.get("answer", "")  # often empty
+
+            elif subset_name == "WikiMQA":
+                question = item.get("input", "")
+                context = item.get("context", "")
+                answers = item.get("answer", [])
+                answer = answers[0] if answers else ""
+
+            elif subset_name == "NarrativeQA":
+                question = item.get("input", "")
+                context = item.get("context", "")
+                answers = item.get("answers", [])
+                answer = answers[0] if answers else ""
+
+            elif subset_name == "Qasper":
+                question = item.get("input", "")
+                context = item.get("context", "")
+                answer = item.get("answer", "")  # often meaningless
+
             samples.append({
                 "dataset": subset_name,
-                "question": item.get("question", ""),
-                "context": item.get("context", ""),
-                "answer": item.get("answer", ""),
+                "question": question.strip(),
+                "context": context.strip(),
+                "answer": answer.strip(),
             })
 
     return samples
