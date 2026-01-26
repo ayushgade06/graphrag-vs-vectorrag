@@ -1,7 +1,7 @@
 SEED = 42
 
 LLM_NAME = "Qwen/Qwen2-1.5B-Instruct"
-LLM_MAX_TOKENS = 32
+LLM_MAX_TOKENS = 64
 
 EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
 
