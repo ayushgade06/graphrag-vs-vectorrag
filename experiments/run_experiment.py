@@ -70,8 +70,8 @@ def prepare_corpus(subset_samples):
         overlap=CHUNK_OVERLAP
     )
 
-    # if DEV_MODE:
-    #     chunks = chunks[:8]
+    if DEV_MODE:
+        chunks = chunks[:8]
 
     log(f"Using {len(chunks)} chunks")
 
@@ -111,11 +111,7 @@ def run_experiment():
         question = qa["question"]
         ground_truth = qa["answer"]
 
-        print("\n" + "=" * 80)
-        print("DATASET:", qa["dataset"])
-        print("QUESTION:\n", question)
-        print("\nGROUND TRUTH:\n", ground_truth)
-        print("=" * 80 + "\n")
+
 
         vector_ctx = vector_rag.retrieve(question, top_k=TOP_K)
         vector_answer = vector_rag.generate(question, vector_ctx, llm)

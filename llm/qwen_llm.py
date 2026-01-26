@@ -12,7 +12,7 @@ class QwenLLM:
         self.mock_mode = mock_mode
 
         if self.mock_mode:
-            print("Initializing QwenLLM in MOCK MODE (for testing)")
+
             self.device = "mock"
             self.tokenizer = None
             self.model = None
@@ -23,7 +23,7 @@ class QwenLLM:
         else:
             self.device = device
 
-        print(f"Initializing QwenLLM on device: {self.device}")
+
 
         self.tokenizer = AutoTokenizer.from_pretrained(
             LLM_NAME,
@@ -62,18 +62,16 @@ class QwenLLM:
                 "The actual answer would appear here."
             )
 
-        # 🔥 CRITICAL FIXES:
-        # 1. Hard cap input tokens
-        # 2. Disable padding for single-sample generation
+
         inputs = self.tokenizer(
             prompt,
             return_tensors="pt",
             truncation=True,
-            max_length=512,   # HARD INPUT CAP (most important)
+            max_length=512,
             padding=False
         ).to(self.device)
 
-        # Hard cap output tokens
+
         max_tokens = min(LLM_MAX_TOKENS, 128)
 
         with torch.no_grad():
@@ -81,12 +79,12 @@ class QwenLLM:
                 **inputs,
                 max_new_tokens=max_tokens,
                 do_sample=False,
-                use_cache=True,  # speeds up decoding
+                use_cache=True,
                 eos_token_id=self.tokenizer.eos_token_id,
                 pad_token_id=self.tokenizer.eos_token_id,
             )
 
-        # Decode only newly generated tokens
+
         generated_tokens = output[0][inputs["input_ids"].shape[-1]:]
 
         decoded = self.tokenizer.decode(

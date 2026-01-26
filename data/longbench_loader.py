@@ -29,7 +29,7 @@ def load_longbench_subset(subset_name: str, limit: Optional[int] = 10):
             if subset_name == "MuSiQue":
                 question = item.get("input", "")
                 context = item.get("context", "")
-                answer = item.get("answer", "")  # often empty
+                answer = item.get("answer", "")
 
             elif subset_name == "WikiMQA":
                 question = item.get("input", "")
@@ -46,7 +46,7 @@ def load_longbench_subset(subset_name: str, limit: Optional[int] = 10):
             elif subset_name == "Qasper":
                 question = item.get("input", "")
                 context = item.get("context", "")
-                answer = item.get("answer", "")  # often meaningless
+                answer = item.get("answer", "")
 
             samples.append({
                 "dataset": subset_name,
