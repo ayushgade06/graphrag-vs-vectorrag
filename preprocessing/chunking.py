@@ -1,35 +1,16 @@
 from typing import List
 
-def chunk_documents(
-    documents: List[str],
-    chunk_size: int,
-    overlap: int
-) -> List[str]:
-    """
-    Splits documents into overlapping chunks.
 
-    Args:
-        documents: List of raw document strings
-        chunk_size: number of tokens per chunk
-        overlap: number of overlapping tokens
-
-    Returns:
-        chunks: List[str]
-    """
-
+def chunk_documents(documents: List[str], chunk_size: int, overlap: int) -> List[str]:
     chunks = []
 
     for doc in documents:
         tokens = doc.split()
-
         start = 0
+
         while start < len(tokens):
             end = start + chunk_size
-            chunk_tokens = tokens[start:end]
-
-            chunk_text = " ".join(chunk_tokens)
-            chunks.append(chunk_text)
-
+            chunks.append(" ".join(tokens[start:end]))
             start = end - overlap
 
             if start < 0:

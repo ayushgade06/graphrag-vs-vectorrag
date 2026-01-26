@@ -6,16 +6,7 @@ CORPUS_CACHE_PATH = "artifacts/corpus/corpus.json"
 
 
 def build_hybrid_corpus(subset_samples: List[List[Dict]]) -> Tuple[List[str], List[Dict]]:
-    """
-    Builds or loads a cached hybrid corpus.
-
-    Returns:
-    - corpus_documents: List[str]
-    - qa_pairs: List[Dict]
-    """
-
     os.makedirs(os.path.dirname(CORPUS_CACHE_PATH), exist_ok=True)
-
 
     if os.path.exists(CORPUS_CACHE_PATH):
         with open(CORPUS_CACHE_PATH, "r") as f:
@@ -29,18 +20,14 @@ def build_hybrid_corpus(subset_samples: List[List[Dict]]) -> Tuple[List[str], Li
         for sample in subset:
             corpus_documents.append(sample["context"].strip())
             qa_pairs.append({
-                "dataset": sample.get("dataset", "Unknown"),
+                "dataset": sample["dataset"],
                 "question": sample["question"].strip(),
                 "answer": sample["answer"].strip()
             })
 
-
     with open(CORPUS_CACHE_PATH, "w") as f:
         json.dump(
-            {
-                "documents": corpus_documents,
-                "qa_pairs": qa_pairs
-            },
+            {"documents": corpus_documents, "qa_pairs": qa_pairs},
             f,
             indent=2
         )

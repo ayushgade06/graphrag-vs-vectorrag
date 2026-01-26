@@ -5,32 +5,27 @@ from sentence_transformers import SentenceTransformer
 from config.experiment_config import MAX_CONTEXT_TOKENS
 
 
-# 🔴 REQUIRED: dummy async entity extractor
-# nano-graphrag WILL call this even if we don't want entities
 async def noop_entity_extraction(*args, **kwargs):
     return None
 
 
 class LocalEmbedding:
     """
-    nano-graphrag-compatible embedding wrapper
-    CPU-only to avoid deepcopy / CUDA OOM
+    nano-graphrag compatible embedding wrapper.
+    Forced CPU execution for stability.
     """
 
     def __init__(self, model_name: str):
-        self.device = "cpu"   # 🔴 FORCE CPU
-        print(f"[GraphRAG] Using embedding device: {self.device}", flush=True)
-
+        self.device = "cpu"
         self.model = SentenceTransformer(model_name, device=self.device)
         self.model.eval()
-
         self.embedding_dim = self.model.get_sentence_embedding_dimension()
 
     async def __call__(self, texts: List[str]):
         with torch.no_grad():
             return self.model.encode(
                 texts,
-                batch_size=8,              # CPU-safe
+                batch_size=8,
                 normalize_embeddings=True,
                 show_progress_bar=False
             ).tolist()
@@ -38,52 +33,43 @@ class LocalEmbedding:
 
 class GraphRAG:
     """
-    Global GraphRAG (build ONCE, query MANY)
+    Global GraphRAG engine.
+    Graph is built once and reused across all queries.
     """
 
     def __init__(self):
         self.embedding = LocalEmbedding("BAAI/bge-base-en-v1.5")
         self.engine = None
-        self._built = False   # 🔒 guard to prevent rebuild
+        self._built = False
 
     def build_graph(self, documents: List[str]):
-        """
-        Build the graph ONCE for the full corpus.
-        Safe to call multiple times (no-op after first build).
-        """
         if self._built:
-            return   # ✅ DO NOTHING if already built
+            return
 
         from nano_graphrag import GraphRAG as NanoGraphRAG
 
         working_dir = "artifacts/graph_index_local"
         os.makedirs(working_dir, exist_ok=True)
 
-        print("[GraphRAG] Building graph index (one-time)", flush=True)
-        print(f"[GraphRAG] Documents: {len(documents)}", flush=True)
+        print(f"[GraphRAG] Initializing graph index with {len(documents)} documents", flush=True)
 
         self.engine = NanoGraphRAG(
             working_dir=working_dir,
             embedding_func=self.embedding,
-
-            # ✅ Disable ALL LLM usage (no OpenAI calls)
             entity_extraction_func=noop_entity_extraction,
             enable_llm_cache=False,
-
-            # Graph-only retrieval
             enable_local=True,
             enable_naive_rag=True
         )
 
-        # 🔴 EXPENSIVE STEP — done ONCE
         self.engine.insert(documents)
-
         self._built = True
-        print("[GraphRAG] Graph build complete", flush=True)
+
+        print("[GraphRAG] Graph index build completed", flush=True)
 
     def retrieve(self, query: str, top_k: int) -> List[str]:
         if not self._built or self.engine is None:
-            raise RuntimeError("GraphRAG has not been built yet.")
+            raise RuntimeError("GraphRAG graph has not been built")
 
         from nano_graphrag import QueryParam
 

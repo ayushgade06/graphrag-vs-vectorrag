@@ -1,7 +1,4 @@
 def lcs_length(x, y):
-    """
-    Compute length of Longest Common Subsequence.
-    """
     dp = [[0] * (len(y) + 1) for _ in range(len(x) + 1)]
 
     for i in range(1, len(x) + 1):
@@ -15,17 +12,15 @@ def lcs_length(x, y):
 
 
 def compute_rouge_l(predicted: str, ground_truth: str) -> float:
-    """
-    Compute ROUGE-L score.
-    """
+    pred = predicted.split()
+    gt = ground_truth.split()
 
-    pred_tokens = predicted.split()
-    gt_tokens = ground_truth.split()
+    if not pred or not gt:
+        return 0.0
 
-    lcs = lcs_length(pred_tokens, gt_tokens)
-
-    precision = lcs / len(pred_tokens) if pred_tokens else 0.0
-    recall = lcs / len(gt_tokens) if gt_tokens else 0.0
+    lcs = lcs_length(pred, gt)
+    precision = lcs / len(pred)
+    recall = lcs / len(gt)
 
     if precision + recall == 0:
         return 0.0
