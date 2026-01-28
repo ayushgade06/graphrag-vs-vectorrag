@@ -25,3 +25,5 @@ data/longbench_raw/
 
 # ---- Old / backup files ----
 requirements_old.txt
+
+models/

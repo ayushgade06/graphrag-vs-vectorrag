@@ -6,15 +6,6 @@ from config.experiment_config import MAX_CONTEXT_TOKENS
 
 
 class EntityGraphRAG:
-    """
-    Entity-Augmented GraphRAG (Reduced Scale)
-
-    - Deterministic NER via spaCy
-    - No LLM usage
-    - No relation extraction
-    - No community detection
-    - Used ONLY for small-scale qualitative analysis
-    """
 
     def __init__(self):
         self.nlp = spacy.load(
@@ -55,26 +46,18 @@ class EntityGraphRAG:
             for ent in entities:
                 self.entity_to_chunks[ent].add(idx)
 
-        print(
-            f"[EntityGraphRAG] Built entity graph with "
-            f"{len(self.entity_to_chunks)} entities "
-            f"over {len(chunks)} chunks",
-            flush=True
-        )
-
     def retrieve(self, query: str, top_k: int) -> List[str]:
         query_entities = self.extract_entities(query)
-        if not query_entities:
-            return []
 
         chunk_scores = defaultdict(int)
 
-        for ent in query_entities:
-            for idx in self.entity_to_chunks.get(ent, []):
-                chunk_scores[idx] += 1
-
-        if not chunk_scores:
-            return []
+        if query_entities:
+            for ent in query_entities:
+                for idx in self.entity_to_chunks.get(ent, []):
+                    chunk_scores[idx] += 1
+        else:
+            for i in range(len(self.chunks)):
+                chunk_scores[i] = 1
 
         ranked = sorted(
             chunk_scores.items(),
@@ -105,10 +88,8 @@ class EntityGraphRAG:
             return ""
 
         prompt = (
-            "Answer the question using ONLY the context below.\n"
-            "If the answer is not explicitly stated, reply with "
-            "\"Insufficient information.\".\n"
-            "Return ONLY the short answer.\n\n"
+            "Answer the question using the information in the context below.\n"
+            "Be concise and factual.\n\n"
             f"Context:\n{chr(10).join(context)}\n\n"
             f"Question: {question}\nAnswer:"
         )

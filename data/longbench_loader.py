@@ -1,4 +1,6 @@
-from typing import Optional
+# data/longbench_loader.py  <- replace the old function with this
+
+from typing import Optional, List, Dict
 import json
 from pathlib import Path
 
@@ -11,8 +13,49 @@ DATASET_FILES = {
     "Qasper": "qasper.jsonl",
 }
 
+def _extract_answer_from_item(item: dict) -> str:
+    # Try common fields and shapes in order
+    candidates = []
 
-def load_longbench_subset(subset_name: str, limit: Optional[int] = 50):
+    # common flat fields
+    for k in ("ground_truth", "groundtruth", "answer", "label", "gold_answer", "gold", "target"):
+        if k in item:
+            candidates.append(item[k])
+
+    # answers as list
+    if "answers" in item and isinstance(item["answers"], (list, tuple)):
+        candidates.append(item["answers"])
+    if "answer_texts" in item and isinstance(item["answer_texts"], (list, tuple)):
+        candidates.append(item["answer_texts"])
+
+    # nested shapes: list of dicts with 'text' or 'answer'
+    if isinstance(item.get("answers"), list):
+        for a in item["answers"]:
+            if isinstance(a, dict):
+                if "text" in a:
+                    candidates.append(a["text"])
+                elif "answer" in a:
+                    candidates.append(a["answer"])
+
+    # final normalization: pick first non-empty string
+    for cand in candidates:
+        if isinstance(cand, str) and cand.strip():
+            return cand.strip()
+        if isinstance(cand, (list, tuple)) and len(cand) > 0:
+            # list of strings -> first non-empty
+            for e in cand:
+                if isinstance(e, str) and e.strip():
+                    return e.strip()
+                if isinstance(e, dict):
+                    # try dict -> text/answer
+                    if "text" in e and isinstance(e["text"], str) and e["text"].strip():
+                        return e["text"].strip()
+                    if "answer" in e and isinstance(e["answer"], str) and e["answer"].strip():
+                        return e["answer"].strip()
+    return ""
+
+
+def load_longbench_subset(subset_name: str, limit: Optional[int] = 50) -> List[Dict]:
     if subset_name not in DATASET_FILES:
         raise ValueError(f"Unknown subset: {subset_name}")
 
@@ -23,25 +66,18 @@ def load_longbench_subset(subset_name: str, limit: Optional[int] = 50):
         for line in f:
             if limit and len(samples) >= limit:
                 break
-
             item = json.loads(line)
 
-            question = item.get("input", "")
-            context = item.get("context", "")
+            question = item.get("input", "") or item.get("question", "") or item.get("query", "")
+            context = item.get("context", "") or item.get("passages", "") or item.get("document", "")
 
-            answer = (
-                item.get("answer", "")
-                if subset_name in {"MuSiQue", "Qasper"}
-                else item.get("answers", [""])[0]
-                if subset_name == "NarrativeQA"
-                else item.get("answer", [""])[0]
-            )
+            answer = _extract_answer_from_item(item)
 
             samples.append({
                 "dataset": subset_name,
-                "question": question.strip(),
-                "context": context.strip(),
-                "answer": answer.strip()
+                "question": question.strip() if isinstance(question, str) else "",
+                "context": context.strip() if isinstance(context, str) else "",
+                "answer": answer
             })
 
     return samples

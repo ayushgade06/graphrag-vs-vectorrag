@@ -1,5 +1,4 @@
 from typing import List
-from config.experiment_config import MAX_CONTEXT_TOKENS
 
 
 class NaiveGraphRAG:
@@ -8,10 +7,7 @@ class NaiveGraphRAG:
         self.vector_rag = vector_rag
 
     def build_graph(self, chunks: List[str]):
-        print(
-            "[NaiveGraphRAG] Initialized (no entity graph, no KG)",
-            flush=True
-        )
+        pass
 
     def retrieve(self, query: str, top_k: int) -> List[str]:
         candidates = self.vector_rag.get_candidates(
@@ -30,9 +26,8 @@ class NaiveGraphRAG:
             return ""
 
         prompt = (
-            "Answer the question using ONLY the context below.\n"
-            "If the answer is not explicitly stated, reply with "
-            "\"Insufficient information.\".\n\n"
+            "Answer the question using the information in the context below.\n"
+            "Be concise and factual.\n\n"
             f"Context:\n{chr(10).join(context)}\n\n"
             f"Question: {question}\nAnswer:"
         )

@@ -488,16 +488,37 @@ from retrieval.entity_graph_rag import EntityGraphRAG
 from llm.qwen_llm import QwenLLM
 from evaluation.f1 import compute_f1
 from evaluation.rouge_l import compute_rouge_l
-from evaluation.normalize import normalize_answer_for_eval
+from evaluation.normalize import normalize_answer
 from reports.results_logger import aggregate_results, print_results_table
 
 
-ENABLE_ENTITY_GRAPHRAG = globals().get("ENABLE_ENTITY_GRAPHRAG", True)
-ENTITY_SAMPLE_LIMIT = globals().get("ENTITY_SAMPLE_LIMIT", 5)
+ENABLE_ENTITY_GRAPHRAG = True
+ENTITY_SAMPLE_LIMIT = 5
 
 
 def log(msg):
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
+
+
+def oracle_text_span(context, ground_truth):
+    if not context or not ground_truth:
+        return ""
+    best = ""
+    best_score = 0.0
+    for chunk in context:
+        for sent in chunk.split("."):
+            score = compute_f1(sent, ground_truth)
+            if score > best_score:
+                best_score = score
+                best = sent
+    return best.strip()
+
+
+def oracle_entity_hit(context, entity):
+    if not context or not entity:
+        return 0.0
+    joined = " ".join(context).lower()
+    return 1.0 if entity.lower() in joined else 0.0
 
 
 def run_experiment():
@@ -510,10 +531,8 @@ def run_experiment():
     subsets = ["MuSiQue", "WikiMQA", "NarrativeQA", "Qasper"]
     samples = [load_longbench_subset(s, limit=10) for s in subsets]
 
-    #building corpus
     docs, qas = build_hybrid_corpus(samples)
 
-    #chunking
     chunks = chunk_documents(docs, CHUNK_SIZE, CHUNK_OVERLAP)
     chunks = chunks[:MAX_GRAPH_DOCS]
 
@@ -522,91 +541,101 @@ def run_experiment():
     vector = VectorRAG()
     vector.index(chunks)
 
-
     naive_graph = NaiveGraphRAG(vector)
     naive_graph.build_graph(chunks)
-
 
     entity_graph = None
     if ENABLE_ENTITY_GRAPHRAG:
         entity_graph = EntityGraphRAG()
         entity_graph.build_graph(chunks)
-        log(
-            "EntityGraphRAG enabled "
-            f"(first {ENTITY_SAMPLE_LIMIT} QAs per dataset)"
-        )
 
-    entity_counter = defaultdict(int)
-
-    #llm
     llm = QwenLLM()
+    entity_counter = defaultdict(int)
 
     results = []
     qualitative = []
+
+    gt_counts = defaultdict(int)
+    total_counts = defaultdict(int)
 
     for i, qa in enumerate(qas, 1):
         dataset = qa["dataset"]
         q = qa["question"]
         gt = qa["answer"]
 
+        total_counts[dataset] += 1
+        if gt.strip():
+            gt_counts[dataset] += 1
+
         log(f"Evaluating QA {i}/{len(qas)} ({dataset})")
 
-        #vectorrag
         vec_candidates = vector.get_candidates(q, CANDIDATE_POOL_SIZE)
         vec_ctx = vector.retrieve_from_candidates(q, vec_candidates, TOP_K)
         vec_ans = vector.generate(q, vec_ctx, llm)
 
-        #naivegraphrag
         naive_ctx = naive_graph.retrieve(q, TOP_K)
         naive_ans = naive_graph.generate(q, naive_ctx, llm)
 
-        #entitygraphrag
         ent_ans = ""
-        if (
-            entity_graph
-            and entity_counter[dataset] < ENTITY_SAMPLE_LIMIT
-        ):
+        if entity_graph and entity_counter[dataset] < ENTITY_SAMPLE_LIMIT:
             ent_ctx = entity_graph.retrieve(q, TOP_K)
             ent_ans = entity_graph.generate(q, ent_ctx, llm)
             entity_counter[dataset] += 1
-
 
         qualitative.append({
             "dataset": dataset,
             "question": q,
             "ground_truth": gt,
+            "vector_context": vec_ctx,
+            "naive_graph_context": naive_ctx,
             "vector_answer": vec_ans,
             "naive_graph_answer": naive_ans,
             "entity_graph_answer": ent_ans,
         })
 
-
-        if gt.strip():
-            vec_eval = normalize_answer_for_eval(vec_ans)
-            naive_eval = normalize_answer_for_eval(naive_ans)
-
-            vector_f1 = compute_f1(vec_eval, gt)
-            vector_rouge = compute_rouge_l(vec_eval, gt)
-            graph_f1 = compute_f1(naive_eval, gt)
-            graph_rouge = compute_rouge_l(naive_eval, gt)
-        else:
-            
-            vector_f1 = 0.0
-            vector_rouge = 0.0
-            graph_f1 = 0.0
-            graph_rouge = 0.0
-
-        results.append({
+        row = {
             "dataset": dataset,
-            "vector_f1": vector_f1,
-            "vector_rouge": vector_rouge,
-            "graph_f1": graph_f1,
-            "graph_rouge": graph_rouge,
-        })
+            "vector_f1": 0.0,
+            "graph_f1": 0.0,
+            "vector_oracle_f1": 0.0,
+            "graph_oracle_f1": 0.0,
+            "vector_rouge": 0.0,
+            "graph_rouge": 0.0,
+            "vector_oracle_rouge": 0.0,
+            "graph_oracle_rouge": 0.0,
+        }
 
-    #saving
+        if dataset == "NarrativeQA" and gt.strip():
+            vec_eval = normalize_answer(vec_ans)
+            naive_eval = normalize_answer(naive_ans)
+
+            vec_oracle = oracle_text_span(vec_ctx, gt)
+            naive_oracle = oracle_text_span(naive_ctx, gt)
+
+            row.update({
+                "vector_f1": compute_f1(vec_eval, gt),
+                "graph_f1": compute_f1(naive_eval, gt),
+                "vector_oracle_f1": compute_f1(vec_oracle, gt),
+                "graph_oracle_f1": compute_f1(naive_oracle, gt),
+                "vector_rouge": compute_rouge_l(vec_eval, gt),
+                "graph_rouge": compute_rouge_l(naive_eval, gt),
+                "vector_oracle_rouge": compute_rouge_l(vec_oracle, gt),
+                "graph_oracle_rouge": compute_rouge_l(naive_oracle, gt),
+            })
+
+        elif dataset == "WikiMQA" and gt.strip():
+            row.update({
+                "vector_oracle_f1": oracle_entity_hit(vec_ctx, gt),
+                "graph_oracle_f1": oracle_entity_hit(naive_ctx, gt),
+            })
+
+        results.append(row)
+
     with open("artifacts/analysis/qualitative_analysis.json", "w") as f:
         json.dump(qualitative, f, indent=2)
+
+    for d in total_counts:
+        log(f"Dataset {d}: {gt_counts[d]}/{total_counts[d]} QAs have ground truth")
 
     summary = aggregate_results(results)
     print_results_table(summary)

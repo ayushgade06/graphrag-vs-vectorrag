@@ -1,4 +1,4 @@
-def lcs_length(x, y):
+def _lcs_length(x, y):
     dp = [[0] * (len(y) + 1) for _ in range(len(x) + 1)]
 
     for i in range(1, len(x) + 1):
@@ -21,7 +21,8 @@ def compute_rouge_l(predicted: str, ground_truth: str) -> float:
     if not pred or not gt:
         return 0.0
 
-    lcs = lcs_length(pred, gt)
+    lcs = _lcs_length(pred, gt)
+
     precision = lcs / len(pred)
     recall = lcs / len(gt)
 

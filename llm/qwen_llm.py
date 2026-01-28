@@ -34,7 +34,7 @@ class QwenLLM:
             self.model = AutoModelForCausalLM.from_pretrained(
                 LLM_NAME,
                 torch_dtype=torch.float16,
-                device_map="cuda",           
+                device_map="cuda",
                 trust_remote_code=True,
                 low_cpu_mem_usage=True
             )
@@ -65,7 +65,7 @@ class QwenLLM:
             output = self.model.generate(
                 **inputs,
                 max_new_tokens=max_tokens,
-                do_sample=False,              
+                do_sample=False,
                 temperature=0.0,
                 top_p=1.0,
                 use_cache=True,
@@ -81,6 +81,3 @@ class QwenLLM:
         )
 
         return decoded.strip()
-
-
-

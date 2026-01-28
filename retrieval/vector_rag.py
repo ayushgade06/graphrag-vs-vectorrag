@@ -1,33 +1,44 @@
 import os
 import numpy as np
 from typing import List
+from pathlib import Path
 import torch
-from sentence_transformers import SentenceTransformer
+import torch.nn.functional as F
+
+from transformers import AutoTokenizer, AutoModel
 
 from config.experiment_config import (
     EMBEDDING_MODEL,
     MAX_CONTEXT_TOKENS,
 )
 
-EMB_CACHE_PATH = f"artifacts/embeddings/{EMBEDDING_MODEL.replace('/', '_')}.npy"
+EMB_CACHE_PATH = "artifacts/embeddings/embeddings.npy"
 CHUNKS_CACHE_PATH = "artifacts/chunks/chunks.npy"
 
 
 class VectorRAG:
-
     def __init__(self, embedding_model: str = EMBEDDING_MODEL):
-        self.embedding_model_name = embedding_model
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
-        print(f"[VectorRAG] Initializing encoder on device: {self.device}", flush=True)
+        model_path = Path(embedding_model).resolve()
+        if not model_path.exists():
+            raise RuntimeError(
+                f"Local embedding model not found at: {model_path}\n"
+                f"Fix EMBEDDING_MODEL or download the model locally."
+            )
 
-        self.encoder = SentenceTransformer(
-            self.embedding_model_name,
-            device=self.device
+        # 🔒 HARD OFFLINE LOCAL LOAD (HF only, no sentence-transformers)
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            model_path,
+            local_files_only=True
         )
-        self.encoder.eval()
 
-        assert self.encoder.get_sentence_embedding_dimension() == 768
+        self.model = AutoModel.from_pretrained(
+            model_path,
+            local_files_only=True
+        ).to(self.device)
+
+        self.model.eval()
 
         self.chunks: List[str] = []
         self.embeddings: np.ndarray | None = None
@@ -37,12 +48,9 @@ class VectorRAG:
         os.makedirs("artifacts/chunks", exist_ok=True)
 
         if os.path.exists(EMB_CACHE_PATH) and os.path.exists(CHUNKS_CACHE_PATH):
-            print("[VectorRAG] Loading cached embeddings", flush=True)
             self.embeddings = np.load(EMB_CACHE_PATH)
             self.chunks = np.load(CHUNKS_CACHE_PATH, allow_pickle=True).tolist()
             return
-
-        print(f"[VectorRAG] Encoding and indexing {len(chunks)} chunks", flush=True)
 
         self.chunks = chunks
         self.embeddings = self._embed_texts(chunks)
@@ -50,9 +58,10 @@ class VectorRAG:
         np.save(EMB_CACHE_PATH, self.embeddings)
         np.save(CHUNKS_CACHE_PATH, np.array(chunks, dtype=object))
 
-        print("[VectorRAG] Embedding index saved to disk", flush=True)
-
     def get_candidates(self, query: str, top_n: int) -> List[str]:
+        if self.embeddings is None:
+            raise RuntimeError("VectorRAG index not built. Call index() first.")
+
         query_emb = self._embed_texts([query])[0]
         sims = np.dot(self.embeddings, query_emb)
 
@@ -77,25 +86,28 @@ class VectorRAG:
         context = "\n\n".join(retrieved_chunks)
 
         prompt = (
-            "Answer the question using ONLY the information in the context below.\n"
-            "If the answer is not explicitly stated, reply with \"Insufficient information.\".\n"
-            "Return ONLY the short answer.\n\n"
+            "Answer the question using the information in the context below.\n"
+            "Be concise and factual.\n\n"
             f"Context:\n{context}\n\n"
             f"Question: {query}\nAnswer:"
         )
-        return llm.generate(prompt)
 
+        return llm.generate(prompt)
 
     def _embed_texts(self, texts: List[str]) -> np.ndarray:
         with torch.no_grad():
-            return np.asarray(
-                self.encoder.encode(
-                    texts,
-                    batch_size=16,
-                    normalize_embeddings=True,
-                    show_progress_bar=False
-                )
-            )
+            inputs = self.tokenizer(
+                texts,
+                padding=True,
+                truncation=True,
+                return_tensors="pt"
+            ).to(self.device)
+
+            outputs = self.model(**inputs)
+            embeddings = outputs.last_hidden_state.mean(dim=1)
+            embeddings = F.normalize(embeddings, p=2, dim=1)
+
+            return embeddings.cpu().numpy()
 
     def _enforce_token_budget(self, texts: List[str]) -> List[str]:
         final_context = []

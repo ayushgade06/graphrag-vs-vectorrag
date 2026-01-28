@@ -1,9 +1,4 @@
-def normalize_answer_for_eval(text: str) -> str:
-    """
-    Normalize model output for fair span-based evaluation.
-    - Keeps only the first sentence
-    - Strips whitespace
-    """
+def normalize_answer(text: str) -> str:
     if not text:
         return ""
-    return text.split(".")[0].strip()
+    return text.strip()

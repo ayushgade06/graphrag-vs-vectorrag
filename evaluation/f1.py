@@ -2,7 +2,7 @@ import re
 from collections import Counter
 
 
-def normalize_text(text: str):
+def _normalize(text: str):
     text = text.lower()
     text = re.sub(r"[^a-z0-9\s]", "", text)
     return text.split()
@@ -12,8 +12,8 @@ def compute_f1(predicted: str, ground_truth: str) -> float:
     if not predicted or not ground_truth:
         return 0.0
 
-    pred_tokens = normalize_text(predicted)
-    gt_tokens = normalize_text(ground_truth)
+    pred_tokens = _normalize(predicted)
+    gt_tokens = _normalize(ground_truth)
 
     if not pred_tokens or not gt_tokens:
         return 0.0

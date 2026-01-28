@@ -45,102 +45,102 @@
     {
       "dataset": "MuSiQue",
       "question": "Who plays the wife of the producer of Here Comes the Boom in Grown Ups?",
-      "answer": ""
+      "answer": "Maria Bello"
     },
     {
       "dataset": "MuSiQue",
       "question": "What was the person who provided evidence to suggest the existence of the neutron a participant of?",
-      "answer": ""
+      "answer": "Manhattan Project"
     },
     {
       "dataset": "MuSiQue",
       "question": "In which borough was Callum McManaman born?",
-      "answer": ""
+      "answer": "Knowsley"
     },
     {
       "dataset": "MuSiQue",
       "question": "Who is the child of the Italian navigator who sailed for England and explored the eastern coast of the continent Francisco Bojado's birthplace is located?",
-      "answer": ""
+      "answer": "Sebastian Cabot"
     },
     {
       "dataset": "MuSiQue",
       "question": "Who is the spouse of the actor who played hannibal smith in the a team?",
-      "answer": ""
+      "answer": "Sherry Boucher"
     },
     {
       "dataset": "MuSiQue",
       "question": "When was the last time Peter Till's sports team beat the winner of the 1894-95 FA Cup?",
-      "answer": ""
+      "answer": "1 December 2010"
     },
     {
       "dataset": "MuSiQue",
       "question": "Who is the child of the cast member of Green Ice?",
-      "answer": ""
+      "answer": "Tatum O'Neal"
     },
     {
       "dataset": "MuSiQue",
       "question": "How many times did plague occur in the birthplace of La Silvia's composer?",
-      "answer": ""
+      "answer": "22"
     },
     {
       "dataset": "MuSiQue",
       "question": "When did military instruction start at the place where Larry Alcala was educated?",
-      "answer": ""
+      "answer": "1912"
     },
     {
       "dataset": "MuSiQue",
       "question": "What is the experimental satellite being forerunner to communication satellite of INSAT-4CR's manufacturer called?",
-      "answer": ""
+      "answer": "ATS - 6 (Applications Technology Satellite - 6)"
     },
     {
       "dataset": "WikiMQA",
       "question": "Where was the wife of Francis I R\u00e1k\u00f3czi born?",
-      "answer": ""
+      "answer": "Ozalj"
     },
     {
       "dataset": "WikiMQA",
       "question": "Who is Sobe (Sister Of Saint Anne)'s grandchild?",
-      "answer": ""
+      "answer": "John the Baptist"
     },
     {
       "dataset": "WikiMQA",
       "question": "Where does the director of film Man At Bath work at?",
-      "answer": ""
+      "answer": "Cahiers du cin\u00e9ma"
     },
     {
       "dataset": "WikiMQA",
       "question": "Do both Beauty And The Bad Man and Wild Child (Film) films have the directors from the same country?",
-      "answer": ""
+      "answer": "no"
     },
     {
       "dataset": "WikiMQA",
       "question": "What is the date of birth of William Paulet, 3Rd Marquess Of Winchester's father?",
-      "answer": ""
+      "answer": "1510"
     },
     {
       "dataset": "WikiMQA",
       "question": "Who is Edward Watson, Viscount Sondes's paternal grandfather?",
-      "answer": ""
+      "answer": "Edward Watson"
     },
     {
       "dataset": "WikiMQA",
       "question": "What is the date of death of Humphrey De Bohun, 7Th Earl Of Hereford's father?",
-      "answer": ""
+      "answer": "16 September 1360"
     },
     {
       "dataset": "WikiMQA",
       "question": "Who is Helmichis's father-in-law?",
-      "answer": ""
+      "answer": "Cunimund"
     },
     {
       "dataset": "WikiMQA",
       "question": "Where did Helena Carroll's father study?",
-      "answer": ""
+      "answer": "St Patrick's College"
     },
     {
       "dataset": "WikiMQA",
       "question": "Where does the director of film Wine Of Morning work at?",
-      "answer": ""
+      "answer": "Bob Jones University"
     },
     {
       "dataset": "NarrativeQA",
@@ -195,52 +195,52 @@
     {
       "dataset": "Qasper",
       "question": "How is the ground truth for fake news established?",
-      "answer": ""
+      "answer": "Ground truth is not established in the paper"
     },
     {
       "dataset": "Qasper",
       "question": "What is the GhostVLAD approach?",
-      "answer": ""
+      "answer": "extension of the NetVLAD, adds Ghost clusters along with the NetVLAD clusters"
     },
     {
       "dataset": "Qasper",
       "question": "By how much does their model outperform the state of the art results?",
-      "answer": ""
+      "answer": "the attention model, MDREA, also outperforms the best existing research results (WAP 0.690 to 0.688)"
     },
     {
       "dataset": "Qasper",
       "question": "What additional features and context are proposed?",
-      "answer": ""
+      "answer": "using tweets that one has replied or quoted to as contextual information"
     },
     {
       "dataset": "Qasper",
       "question": "Which Facebook pages did they look at?",
-      "answer": ""
+      "answer": "FoxNews, CNN, ESPN, New York Times, Time magazine, Huffington Post Weird News, The Guardian, Cartoon Network, Cooking Light, Home Cooking Adventure, Justin Bieber, Nickelodeon, Spongebob, Disney"
     },
     {
       "dataset": "Qasper",
       "question": "Do the hashtag and SemEval datasets contain only English data?",
-      "answer": ""
+      "answer": "Yes"
     },
     {
       "dataset": "Qasper",
       "question": "What type of evaluation is proposed for this task?",
-      "answer": ""
+      "answer": "Answer with content missing: (Evaluation Metrics section) Precision, Recall, F1-scores, Strict match, METEOR, ROUGE-2"
     },
     {
       "dataset": "Qasper",
       "question": "What are the datasets used for evaluation?",
-      "answer": ""
+      "answer": "CNN/DailyMail news highlights, New York Times Annotated Corpus, XSum"
     },
     {
       "dataset": "Qasper",
       "question": "How does this approach compare to other WSD approaches employing word embeddings?",
-      "answer": ""
+      "answer": "GM$\\_$KL achieves better correlation than existing approaches for various metrics on SCWS dataset."
     },
     {
       "dataset": "Qasper",
       "question": "How does their ensemble method work?",
-      "answer": ""
+      "answer": "simply averaging the predictions from the constituent single models"
     }
   ]
 }
