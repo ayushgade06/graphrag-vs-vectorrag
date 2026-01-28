@@ -26,6 +26,10 @@ def aggregate_results(results):
             "vector_oracle_rouge": round(sum(_get(r, "vector_oracle_rouge") for r in rows) / n, 4),
             "graph_rouge": round(sum(_get(r, "graph_rouge") for r in rows) / n, 4),
             "graph_oracle_rouge": round(sum(_get(r, "graph_oracle_rouge") for r in rows) / n, 4),
+
+            # NEW
+            "vector_recall": round(sum(_get(r, "vector_recall") for r in rows) / n, 4),
+            "graph_recall": round(sum(_get(r, "graph_recall") for r in rows) / n, 4),
         }
 
         summary[dataset]["delta_f1_llm"] = round(
@@ -40,11 +44,11 @@ def aggregate_results(results):
 
 def print_results_table(summary):
     header = (
-        f"{'Dataset':<15} | {'Vec F1':<8} | {'Vec Or F1':<10} | "
-        f"{'Gr F1':<8} | {'Gr Or F1':<10} | "
-        f"{'Vec RG':<8} | {'Vec Or RG':<10} | "
-        f"{'Gr RG':<8} | {'Gr Or RG':<10} | "
-        f"{'ΔF1 (LLM)':<10} | {'ΔRG (LLM)':<10}"
+        f"{'Dataset':<15} | {'Vec F1':<7} | {'Gr F1':<7} | "
+        f"{'Vec Or F1':<9} | {'Gr Or F1':<9} | "
+        f"{'Vec RG':<7} | {'Gr RG':<7} | "
+        f"{'Vec Rec':<7} | {'Gr Rec':<7} | "
+        f"{'ΔF1':<6} | {'ΔRG':<6}"
     )
     print(header)
     print("-" * len(header))
@@ -52,9 +56,9 @@ def print_results_table(summary):
     for dataset, m in summary.items():
         print(
             f"{dataset:<15} | "
-            f"{m['vector_f1']:<8} | {m['vector_oracle_f1']:<10} | "
-            f"{m['graph_f1']:<8} | {m['graph_oracle_f1']:<10} | "
-            f"{m['vector_rouge']:<8} | {m['vector_oracle_rouge']:<10} | "
-            f"{m['graph_rouge']:<8} | {m['graph_oracle_rouge']:<10} | "
-            f"{m['delta_f1_llm']:<10} | {m['delta_rouge_llm']:<10}"
+            f"{m['vector_f1']:<7} | {m['graph_f1']:<7} | "
+            f"{m['vector_oracle_f1']:<9} | {m['graph_oracle_f1']:<9} | "
+            f"{m['vector_rouge']:<7} | {m['graph_rouge']:<7} | "
+            f"{m['vector_recall']:<7} | {m['graph_recall']:<7} | "
+            f"{m['delta_f1_llm']:<6} | {m['delta_rouge_llm']:<6}"
         )
