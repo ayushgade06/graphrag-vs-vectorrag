@@ -1,41 +1,27 @@
-SEED = 42
+SEED = 42 
 
-# ===============================
-# LLM CONFIGURATION
-# ===============================
+# llm config
 LLM_NAME = "Qwen/Qwen2-1.5B-Instruct"
-LLM_MAX_TOKENS = 64
+LLM_MAX_TOKENS = 128
 
-# ===============================
-# EMBEDDING CONFIGURATION
-# ===============================
+# embedding config
 EMBEDDING_MODEL = "BAAI/bge-base-en-v1.5"
 
-# ===============================
-# CHUNKING
-# ===============================
+# chunking
 CHUNK_SIZE = 512
-CHUNK_OVERLAP = 50
+CHUNK_OVERLAP = 100
 
-# ===============================
-# RETRIEVAL
-# ===============================
-TOP_K = 10
+# retrieval
+TOP_K = 20
 CANDIDATE_POOL_SIZE = 200
 
-# ===============================
-# CONTEXT BUDGET
-# ===============================
+# context budget of llm
 MAX_CONTEXT_TOKENS = 1024
-MAX_CHUNKS = 8
+MAX_CHUNKS = 12
 
-# ===============================
-# GRAPH SAFETY
-# ===============================
+# system safety in case of graphrag
 MAX_GRAPH_DOCS = 1200
 
-# ===============================
-# DEVELOPMENT
-# ===============================
+# developement mode
 DEV_MODE = False
 SAMPLE_LIMIT = 5 if DEV_MODE else 10

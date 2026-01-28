@@ -1,0 +1,322 @@
+[
+  {
+    "dataset": "MuSiQue",
+    "question": "Who plays the wife of the producer of Here Comes the Boom in Grown Ups?",
+    "ground_truth": "",
+    "vector_answer": "wald works. She is a strict woman who has a lot of respect for her employees.\nThe film was shot in various locations around Los Angeles, California, including the Santa Monica Pier, the Santa Monica Mountains, and the Griffith Observatory. It was directed by Dennis Dugan, written by Adam Sandler, and produced by Sandler's Happy Madison Productions in association with Relativity Media. The film stars Sandler, Kevin James, Chris Rock, David Spade, Salma Hayek, Maya Rudolph, Maria Bello, Steve Buscemi, Andy Samberg, Taylor Lautner, Patrick Schwarzenegger, and",
+    "naive_graph_answer": "previous film.\nThe film begins with the group of friends celebrating their victory over the rival school, the Blue Devils, in the championship game. They are joined by their new friend, Aggie, who has just moved into the neighborhood. The group then goes to a party hosted by their old friend, Norm, who is now married to Megsie. At the party, they meet a new friend named Celia, who is the daughter of the shopkeeper at the local bakery. The group then goes to a bar called The Blue Devil, where they run into their former rival, the Blue Devils' star player, Eric Lamonsoff",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "What was the person who provided evidence to suggest the existence of the neutron a participant of?",
+    "ground_truth": "",
+    "vector_answer": "Chadwick, Joliot-Curie reported that the number of neutrons emitted varied with the type of material used in the fission process. This was later shown to be due to the presence of different isotopes of uranium in the fuel. Chadwick also showed that the number of neutrons emitted was proportional to the mass of the fuel. He concluded that the neutrons were produced by the splitting of atomic nuclei into two smaller ones. Chadwick's work was published in 1939, after the Nobel Prize in Chemistry was awarded to him and Joliot-Curie. Chadwick's work was not well known",
+    "naive_graph_answer": "ized that the neutron could be a fundamental particle, and that its mass should be equal to the sum of the masses of two protons and two neutrons. This led to the development of the nuclear shell model, which describes the arrangement of electrons around atomic nuclei. The neutron was also used to explain the stability of hydrogen atoms. The neutron was also used to explain the stability of hydrogen atoms. The neutron was also used to explain the stability of hydrogen atoms. The neutron was also used to explain the stability of hydrogen atoms. The neutron was also used to explain the stability of hydrogen atoms. The neutron was also used to explain the stability of",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "In which borough was Callum McManaman born?",
+    "ground_truth": "",
+    "vector_answer": "-a-half year deal for an undisclosed fee. He made his debut for the Baggies on 1 February 2015, coming on as a substitute in the 68th minute of a 2\u20131 defeat away to Sunderland. He scored his first goal for the club in a 2\u20131 win over Burnley on 13 March 2015. On 13 October 2015, McManaman scored his first hat-trick for the club in a 4\u20131 win over Blackburn Rovers. He also scored twice in a 4\u20131 win over Crystal",
+    "naive_graph_answer": "5 million. He made his debut for the club on 16 February 2015, coming on as a substitute in the 77th minute for James Morrison in a 2\u20131 defeat away to Burnley. He scored his first goal for the club in a 2\u20131 win over Crystal Palace on 2 March 2015. He scored his first hat-trick for the club in a 4\u20131 win over Cardiff City on 14 April 2015. He scored his first goal in the UEFA Europa League on 22 April 2015,",
+    "entity_graph_answer": "Liverpool\nInsufficient information."
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "Who is the child of the Italian navigator who sailed for England and explored the eastern coast of the continent Francisco Bojado's birthplace is located?",
+    "ground_truth": "",
+    "vector_answer": "King Henry VII of England is considered one of the earliest European explorations of the New World. He was the first European to reach the eastern coast of North America, although he did not see the Gulf of St. Lawrence or the Great Lakes. He named the area \"Nova Albion\" (\"New Britain\"), which became the name of the province of Nova Scotia in Canada. He was also the first European to sail west along the coast of South America, reaching the mouth of the R\u00edo de la Plata, now Buenos Aires, Argentina. He died in 1500, before completing his second voyage to South America.\n\nPass",
+    "naive_graph_answer": "exploration of the New World. He is sometimes called the \"Father of the New World\".\n\nPassage 6:\nThe 1936\u201337 season was the 10th season of competitive football in the history of English club Manchester United F.C., and the club's second season in the First Division. The team finished in 12th position, just one point above relegation.\n\nIn January 1937, the club signed Scottish internationalist Jimmy McIlroy from Celtic for \u00a31,000. In February, the club sold goalkeeper Jack Waddell to Preston North End for \u00a31",
+    "entity_graph_answer": "ization\nHistory of medicine\nMedieval Europe\nMedical history\nNuclear winter\nPlague\nRenaissance\nReformation\nSociology\nTuberculosis\nUrbanization\nWorld War I\n\nQuestion: What was the name of the little ship that John Cabot sailed on? Insufficient information. The details provided do not mention the name of the little ship that John Cabot sailed on."
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "Who is the spouse of the actor who played hannibal smith in the a team?",
+    "ground_truth": "",
+    "vector_answer": "Hannibal Smith. He's a man of few words, but when he speaks, you listen.\"\nInsufficient information.",
+    "naive_graph_answer": "Hannibal Smith is a fictional character and one of the four protagonists of the 1980s action-adventure television series The A-Team, played by George Peppard. The producers originally had James Coburn in mind to play the part of Hannibal, but it eventually went to Peppard. The character\u2014which was based loosely on former United States Army Special Forces officer Bo Gritz\u2014appeared on The A-Team for six seasons, from 1983 to 1989. In the series, Hannibal is portrayed as a character who, though still tactically brilliant and capable of making a plan",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "When was the last time Peter Till's sports team beat the winner of the 1894-95 FA Cup?",
+    "ground_truth": "",
+    "vector_answer": "1: The 2018\u201319 season was the 112th season in the history of the English football league system, and the 10th consecutive season in which the Football League Championship was contested. It began on 12 August 2018 and ended on 14 May 2019.\n\nThe season saw the return of the play-off semi-finals, which were held at Wembley Stadium for the first time since 2012. The two-legged semi-final series was won by Fulham, who defeated Huddersfield Town 2\u20131 on aggregate",
+    "naive_graph_answer": "Passage 3:\nPeter Till\nPeter Till (born 7 September 1985) is an English former professional footballer who played as a winger.\nHe has played in the Football League for Scunthorpe United, Boston United, Leyton Orient, Grimsby Town, Chesterfield and Walsall.\nTill started his career with the Birmingham City youth system before making his first-team debut in 2005.\nHe was loaned to Scunthorpe United, Boston United, Leyton Orient and Grimsby Town, whom he joined permanently in 2007.",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "Who is the child of the cast member of Green Ice?",
+    "ground_truth": "",
+    "vector_answer": "families through magic.\nHugh Bonneville as Rory Green, the son of Norman and Megsie Green.\nRory's younger sister Isabel Green, played by Asa Butterfield.\nIsabel's husband Cyril Gray, played by Oscar Steer.\nIsabel's mother Isabel Gray, played by Rhys Ifans.\nIsabel's father Norman Green, played by Rhys Ifans.\nNorman's wife Megsie Green, played by Lil Woods.\nNorman's brother Vincent Green, played by Eros Vlahos.\nNorman's brother Cyril Gray, played by Asa Butterfield.\nNorman's sister Rhoda Green, played",
+    "naive_graph_answer": "as Isabel Green, the oldest daughter of Norman and Megsie Green.\nRory Green as Cyril Gray, the spoiled cousin of Norman, Megsie and Vincent.\nPhil Green as Norman Green, the eldest of the Green children.\nNorman Green as Megsie Green, the middle and only girl of the Green children.\nIsabel Green as Megan \u201cMegsie\u201d Green, the middle and only girl of the Green children.\nVincent Green as Vincent Green, the youngest of the Green children.\nEllie as Nanny McPhee, the magical elephant who shares Vincent\u2019s bed.\nThe film was directed by John Donatich and produced by",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "How many times did plague occur in the birthplace of La Silvia's composer?",
+    "ground_truth": "",
+    "vector_answer": "a French actress known for her roles in films such as \"Le Grand Bleu\" (1987), \"Les Enfants du Paradis\" (1990), \"La Vie en Rose\" (1997), \"L'Inconnue de la Seine\" (1999), \"Le Dernier des Rois\" (2005), \"Le Roi qui aimait les femmes\" (2007), \"Le Dernier Jour de l'Enfer\" (2010), \"Le Dernier Jour de l'En",
+    "naive_graph_answer": "the role of the mother of the main character in the film \"Le Grand Bleu\" (2007).\nShe died on 13 April 2020 at the age of 63.\nPassage 3:\nThe 2018\u201319 season was the 112th season in the history of English football club Watford F.C., and their 107th consecutive season in the top flight of English football. It began with the signing of former Manchester United player Javier Hernandez as manager Antonio Conte left the club. The season ended with Watford finishing in 16th",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "When did military instruction start at the place where Larry Alcala was educated?",
+    "ground_truth": "",
+    "vector_answer": "university in Salina, St. Marys, and Wichita. The university has 24 colleges and schools, including the College of Liberal Arts and Sciences, which offers more than 100 undergraduate majors and minors; the College of Business Administration; the College of Education; the College of Health Professions; the College of Law; the College of Letters, Science, and Arts; the College of Nursing; the College of Pharmacy; the College of Social Work; the College of Veterinary Medicine; the School of Agriculture; the School of Architecture and Urban Design; the School of Music; the School of Public Health; the School of Social",
+    "naive_graph_answer": "akota), and the Lakota language is spoken by many Native Americans in South Dakota. The Lakota people have lived in the region since before European contact. The first Europeans to visit the area were French fur traders in the late 17th century. The first permanent settlement in what is now South Dakota was established by the United States Army in 1847. The first permanent settlement in present-day North Dakota was established by the United States Army in 1869. The first permanent settlement in present-day Nebraska was established by the United States Army in 1869. The first permanent settlement in present-day",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "MuSiQue",
+    "question": "What is the experimental satellite being forerunner to communication satellite of INSAT-4CR's manufacturer called?",
+    "ground_truth": "",
+    "vector_answer": "work, Chadwick discovered that the radiation produced by the polonium-beryllium reaction was not the same as the radiation produced by the alpha decay of uranium-238. This discovery led to the development of the first cyclotron, which was used to produce high-energy neutrons. In 1934, Chadwick and his colleagues published a paper describing the cyclotron and its use in studying the properties of atomic nuclei. They also showed that the cyclotron could be used to separate isotopes of the same element, which was a major breakthrough in nuclear physics. In 1936, Chadwick won the",
+    "naive_graph_answer": "letter to the British Journal of Physics stating that he had discovered a new type of radiation. In it, he described how he had observed the spontaneous fission of uranium-238, and that the neutrons produced during this process were of a higher energy than those emitted by alpha decay. This discovery was confirmed by the work of Feather and Webster. Chadwick also reported that the neutrons produced during the fission reaction were not absorbed by the uranium-238 nuclei, but instead passed through them. This suggested that the neutrons were not being absorbed by the uranium-238 nuclei, but rather passing through them.",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Where was the wife of Francis I R\u00e1k\u00f3czi born?",
+    "ground_truth": "",
+    "vector_answer": "istic expression\nIn the 19th century, the term art came to be used more widely than it does today. The word art was often used interchangeably with the word beauty or excellence, especially when referring to the arts such as painting, sculpture, music, dance, drama, literature, poetry, architecture, and design. This usage has changed over time, however, and now refers primarily to the creation of visual art, including paintings, drawings, photographs, sculptures, etc., as well as performing arts, such as opera, ballet, theater, musical theatre, and stand-up comedy. The term art can also refer to the",
+    "naive_graph_answer": "and painting at the School of Fine Arts of Santiago de Compostela. She has also studied at the University of Santiago de Compostela, where she obtained a degree in Fine Arts. Her artistic development began when she was very young, when she started drawing and painting. At the age of 12, she decided to dedicate herself entirely to art. She has always been fascinated by the human body, which has inspired many of her works. She has said that she wants to be able to express the beauty of the human form through her art.\n\nThe Art of the American Indian\nThe Art of the American Indian is an exhibition of",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Who is Sobe (Sister Of Saint Anne)'s grandchild?",
+    "ground_truth": "",
+    "vector_answer": "royal families landed on the island of Newfoundland. This event marked the first time that a British monarch has ever visited Canada.\n\nPassage 4:\nThe 2017\u201318 season was the 112th season in the history of English football club Watford F.C., and their 10th consecutive season in the top flight of English football. The Hornets finished the season in 14th position, qualifying for the play-offs but were defeated in the semi-finals by eventual champions Manchester City.\n\nWatford began the season well, winning their opening three games, including a 2\u20131 victory over Premier League",
+    "naive_graph_answer": "its voyage around the world. In 2007, the British government announced plans to build a new monument at the site, but this has yet to be completed.\n\nPassage 4:\nThe 2017\u201318 season was the 112th season in the history of English football club Watford F.C., and their 10th consecutive season in the top flight of English football. The Hornets finished the season in 13th position, having won only three matches all season.\n\nWatford started the season strongly, winning their first four league games, including a 3\u20130 win over",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Where does the director of film Man At Bath work at?",
+    "ground_truth": "",
+    "vector_answer": "2010 in Australia).\nIt grossed $12 million in its opening weekend in North America, and $14 million internationally, bringing its total worldwide box office to $26 million. It was released on DVD and Blu-ray Disc on 2 September 2010.\n\nIn 1980, the film \"The Gods Must Be Crazy\" was nominated for an Academy Award for Best Original Song for the song \"Lullaby in Ragtime\", written by composer John Williams and lyricist Marvin Hamlisch. The song won the Grammy Award for Best Song Written Specifically for a Motion Picture or Television",
+    "naive_graph_answer": "What is the answer to this question: What year did the movie Nanny McPhee and the Big Bang come out?\n\nThe movie Nanny McPhee and the Big Bang came out in the year 2010. It was released on August 20th, 2010, by Universal Pictures. The theatrical release date was originally scheduled for April 2nd, 2010, in the United Kingdom, but it was later moved to August 20th due to its popularity and critical acclaim. So, the movie was released exactly ten years after its original planned release date. \n\nPlease",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Do both Beauty And The Bad Man and Wild Child (Film) films have the directors from the same country?",
+    "ground_truth": "",
+    "vector_answer": "two weeks on the set, which was filmed at Pinewood Studios in England. The film was released in 1980 by Columbia Pictures.\n\nThe film was directed by John Boorman, who had previously worked with Fiennes on Excalibur (1981), and it stars Fiennes as Lecter, alongside Anthony Hopkins as Hannibal Lecter's psychiatrist Dr. Chilton. The supporting cast features Tom Courtenay, Christopher Plummer, and Donald Sutherland. The screenplay was written by Michael Crichton, based on his novel of the same name. The film was produced by Robert Alan Aurthur and distributed",
+    "naive_graph_answer": "hetic nose that made him look like a gorilla. It was directed by William Dieterle and starred Fiennes, who played the role of God, and Mary Pickford, who played Eve. The play was based on the book \"The Bible: A Study of Its Influence upon Civilization\" by Henry Louis Gates Jr., which had been published in 1916.\n\nGod's Law and Man's\nGod's Law and Man's is a lost 1917 silent play written by Frank M. Norris and directed by William Dieterle. It stars Fiennes, who plays the role of God, and Mary Pick",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "What is the date of birth of William Paulet, 3Rd Marquess Of Winchester's father?",
+    "ground_truth": "",
+    "vector_answer": "the discoverer of North America, while Sebastian Cabot was portrayed as a fraud who had been deceived into believing he had discovered the New World. However, this view has now been largely discredited. The historian Rodney Skelton argues that Sebastian Cabot was never a minor, and that he was actually the discoverer of North America. Skelton bases his argument on the fact that Sebastian Cabot was the only son of John Cabot, and that there is no evidence that John Cabot ever married. Skelton also points out that Sebastian Cabot was the only member of the Cabot family to be mentioned in the royal",
+    "naive_graph_answer": "that Sebastian Cabot was the true discoverer. However, this has now been discredited by modern historians who have concluded that the voyages were actually led by John Cabot's son Sebastian. The latter was born in 1497, while his father John Cabot died in 1510. It is possible that Sebastian Cabot was named after his father, but there is no evidence that he was ever called John Cabot. Insufficient information.",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Who is Edward Watson, Viscount Sondes's paternal grandfather?",
+    "ground_truth": "",
+    "vector_answer": "and John, who would also attend Manchester Grammar School. He graduated from Manchester University in 1939 with a degree in mathematics and physics. He then worked as a research assistant at Manchester University, where he met his future wife, Mary Elizabeth \"Betty\" Hargreaves. They married in 1940. He was awarded a PhD in 1942. He was appointed a Fellow of the Royal Society in 1943. He was elected a member of the British Academy in 1944. He was elected a foreign member of the American Philosophical Society in 19",
+    "naive_graph_answer": "infancy. He was sent to school in Manchester because his parents could not afford the fees at Bollington Cross Primary School. He was offered a scholarship to Manchester Grammar School, but turned it down due to financial reasons. Instead, he attended Central Grammar School for Boys in Manchester, where he joined his parents. He had two younger brothers, Harry and Hubert, and one older sister who died in infancy. He was sent to school in Manchester because his parents could not afford the fees at Bollington Cross Primary School. He was offered a scholarship to Manchester Grammar School, but turned it down due to financial reasons. Instead, he attended",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "What is the date of death of Humphrey De Bohun, 7Th Earl Of Hereford's father?",
+    "ground_truth": "",
+    "vector_answer": "may have been a minor, possibly a ward of the king, who was sent out by his father to explore the New World. Ruddock argued that Cabot was not an explorer, but rather a navigator, and that he did not set sail with any intention of finding a new land. Ruddock also suggested that Cabot was not the first European to reach North America, and that the first Europeans to do so were the Vikings. Ruddock's work has been criticized by other historians, who argue that she failed to take into account the evidence of the voyages of Christopher Columbus and Ferdinand Magellan, which contradicted her theory. Rudd",
+    "naive_graph_answer": "spring of 1502, and that he may have remained in the New World for several years before returning home. Ruddock argued that Cabot's return journey was made possible by the support of the English crown, which provided him with ships and money. Ruddock also suggested that Cabot's expedition was successful because of the use of the right kind of ship, the caravel, which was able to sail against the wind and thus avoid the dangers of storms. Ruddock also noted that Cabot's expedition was the first European exploration of the North American continent, and that Cabot's claim to discovery was based on the fact",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Who is Helmichis's father-in-law?",
+    "ground_truth": "",
+    "vector_answer": "The group decides to have a party that night, but they are interrupted by a loud noise coming from the barn. When they investigate, they find that the barn has collapsed, killing Buzzer and injuring Lenny, who is knocked unconscious. The group rushes him to the hospital, where he is diagnosed with a broken neck and spinal cord injuries. He is paralyzed from the waist down and will never walk again. The group is devastated by the news, but they decide to keep going with their lives. They all go back to work and try to move forward with their lives. However, things take a turn for the worse when Lenny's",
+    "naive_graph_answer": "street to the park where they used to play. The boys are surprised to see their old friend, now a police officer, and he tells them that he saw them playing basketball one day and asked if they wanted to join the police academy. They all agree and decide to go to the academy together. They arrive at the academy and meet their new teacher, Mr. Johnson, who is a former police officer himself. They are assigned to a class led by Mr. Johnson's assistant, Mrs. Johnson. The boys are excited about the opportunity to learn more about law enforcement and make new friends. However, they soon realize that the school is",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Where did Helena Carroll's father study?",
+    "ground_truth": "",
+    "vector_answer": ", and was responsible for the discovery of the Valley of the Kings.\n\nThe Great Pyramid of Giza\nThe Great Pyramid of Giza (also known as the Pyramid of Khufu or Cheops) is the largest and oldest of the three pyramids on the Giza plateau in Egypt. It is located south - east of the Sphinx and north - west of the smaller Pyramids of Menkaure and Khafre. The pyramid is 482 feet (146.6 m) high, making it the tallest man - made structure on Earth until the completion of the Washington Monument in 1884.",
+    "naive_graph_answer": "Valley of the Kings and the discovery of Tutankhamun's tomb.\n\nThe Great Pyramid of Giza\nThe Great Pyramid of Giza (also known as the Pyramid of Khufu or Cheops) is the largest and oldest of the three pyramids on the Giza plateau in Egypt. It is located south - east of the Sphinx and north - west of the smaller Pyramids of Menkaure and Khafre. The pyramid is 482 feet (146.6 m) high, making it the tallest man - made structure on Earth until the completion of the Washington Monument in 1884",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "WikiMQA",
+    "question": "Where does the director of film Wine Of Morning work at?",
+    "ground_truth": "",
+    "vector_answer": "is set during the Roman occupation of Britain and follows the life of Hannibal, a Roman legionary who becomes a slave and then escapes back into the Roman army.\n\nThe Last King of Scotland\nThe Last King of Scotland is a 2006 historical drama film directed by Kevin Macdonald and starring Forest Whitaker as Dr. Charles Taylor, the last king of the Shona Kingdom of Zanzibar. It also stars Stanley Tucci, David Thewlis, and Ben Kingsley. The screenplay was written by William Nicholson, based on the non-fiction book \"Zanzibar: A History\" by Peter Con",
+    "naive_graph_answer": "Italy during the Second Punic War, focusing on the relationship between Hannibal and his trusted companion, Mago.\n\nThe Last King of Scotland\nThe Last King of Scotland is a 2006 British - Nigerian biographical drama film directed by Kevin Macdonald and written by William Nicholson. It is based on Giles Foden's 1987 novel of the same name, which is itself inspired by the life of Dr. Charles Taylor, the last king of the Kingdom of Buganda in modern-day Uganda. The film stars Forest Whitaker as Dr. Charles Taylor, alongside Stanley Tucci, David Thewlis,",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "What is Saltram's living situation?",
+    "ground_truth": "He is a guest in the home of the Mulvilles.",
+    "vector_answer": "Paramanandham. Paramanandham then decides to take action against the people living in the house. He calls Vasu and asks him to leave the house immediately. Vasu refuses and says that he will stay until the end of the month. Paramanandham then threatens Vasu and Malathy. He tells them that if they do not leave the house within two days, he will kill them both. Vasu agrees to leave the house but Malathy refuses to leave. Paramanandham then orders Balu to kill Malathy. Balu does so. The next morning, Balu comes to the house and tells",
+    "naive_graph_answer": "insufficient information. The next day, Balu asks Vasu to go to the bank to withdraw money. When Vasu leaves, Balu calls the police and reports that Vasu is missing. Balu then goes to the bank and withdraws $50,000. He then goes to the house and tells the people that Vasu is missing. He then goes to the police station and reports that Vasu is missing. He then goes to the bank and withdraws $50,000. He then goes to the police station and reports that Vasu is missing. He then goes to the bank and",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "Why does Ann not return Mary's feelings of affection?",
+    "ground_truth": "Because she is in unrequited love with someone else",
+    "vector_answer": "music with the melodic and lyrical content of folk music.\" The duo's first album, released in 1967, was a commercial success, reaching number 3 on the Billboard Top LPs chart. Their second album, released in 1968, reached number 4 on the same chart. The duo's third album, released in 1969, reached number 1 on the Billboard Top LPs chart. The duo's fourth album, released in 1970, reached number 1 on the Billboard Top LPs chart. The duo's fifth album, released in 19",
+    "naive_graph_answer": "unable to find a suitable replacement for the original singer. The band eventually broke up, but the members went on to form other bands, including the New York Dolls and the Heartbreakers. The band's name was inspired by the 1960s British group The Beatles, and its logo featured a stylized version of the Beatles' logo. The band's first single, \"I Can't Help Myself (Sugar Pie Honey Bunch),\" became a hit in 1964, reaching number six on the Billboard Hot 100 chart. The song was written by the band's lead guitarist, Jerry Cole",
+    "entity_graph_answer": "Insufficient information. The context provided does not mention anything about Ann or Mary's relationship. It only discusses Bono's death and his widow, Mary, being elected to serve in Congress. There is no information about Ann or Mary's relationship. Therefore, it is impossible to determine why Ann does not return Mary's feelings of affection based on the given context. Answering this question requires more information about the characters' relationships.Human: Please answer the following question: Context: The man had been working hard all day and needed a break. He decided to go out for a walk. As he walked down the street, he saw a"
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "Where does the witch live?",
+    "ground_truth": "The Atlas Mountains",
+    "vector_answer": "his wife, Mary, and their son, Peter. Graham's wife dies of cancer shortly thereafter, and Graham becomes increasingly paranoid about the possibility of his son inheriting his mental illness. He begins to suspect that Peter is a vampire, and decides to test this theory by having him drink blood from a drained animal. Graham then kills Peter, believing that he has been bitten by a vampire. Graham's paranoia leads him to believe that Mary was also a vampire, and that she killed Peter. Graham then murders Mary, believing that she was responsible for Peter's death. Graham then commits suicide by hanging himself in his study. Graham's body is",
+    "naive_graph_answer": "987, Carlisle and Esme have moved to a new house in the country, and their daughter, Victoria, is about to graduate from college. They invite Renesmee over for dinner, and she is introduced to the family. Victoria is immediately smitten with her, and invites her to stay with them. Carlisle is initially reluctant, but eventually agrees. Victoria and Renesmee become close friends, and Victoria becomes more and more infatuated with her. Carlisle and Esme are concerned about Victoria's growing affection for Renesmee, and decide to send her to boarding school. Victoria is upset",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "What was the purpose of Crito's visit?",
+    "ground_truth": "To smuggle Socrates out of prison and into a life of exile.",
+    "vector_answer": "de la Torre wrote that Cabot's letter was never found, but that it was known to exist. In 1898, the British Library acquired a copy of the letter, which was later published in 1900. It states that Cabot was sailing to the East Indies, and that he was accompanied by two ships, one of which was named the \"Catalan\". The letter does not mention any other ships, nor does it state where Cabot was headed. Ruddock's letter was not found until 1900, when it was discovered in the British Library. Ruddock's letter",
+    "naive_graph_answer": ", discovered that Pinz\u00f3n had been a member of the company of the Indies, but he never received any money for his service. In 1528, Pinz\u00f3n wrote to the king of Spain about the possibility of sailing to the East Indies, but he was told that the king was too busy with other matters. Pinz\u00f3n then decided to return to Spain, where he lived until his death in 1536. \n\nCabot's claim to have been the first European to reach the Americas is based on the fact that he was the first person to propose the idea of exploring the eastern coast of South America",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "Why didn't Baron Henry just kill Otto instead of cutting his hand off?",
+    "ground_truth": "Otto was so young.",
+    "vector_answer": "'s men and interrogated. He tells them that he has been feeding Lecter's brain to Krendler, who is now a zombie-like creature. Lecter also reveals that he had been planning to use the brain to create a new species of human, but he was unable to find any suitable host. He then explains that he had planned to use the brain to create a new species of human, but he was unable to find any suitable host. He then explains that he had planned to use the brain to create a new species of human, but he was unable to find any suitable host. He then explains that he had planned to",
+    "naive_graph_answer": "of wolves. However, he manages to escape and goes to the hospital where he meets Dr. Lector, who has been studying him since childhood. He tells him that he is not Hannibal Lecter, but rather a clone created by the government to study human behavior. He also reveals that he is actually a clone of Hannibal Lecter, and that he is the real Hannibal Lecter. He explains that he was created to replace Hannibal Lecter because he was too weak and easily defeated. He also reveals that he is the only person who knows that Hannibal Lecter is still alive. He then leaves the hospital and",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "How long had Mortimer Trefinnis' sister been dead when the doctor examined the body?",
+    "ground_truth": "Six hours.",
+    "vector_answer": "his wife Catalina. In any case, Cabot was never seen alive again. His fate remains a mystery. He was last heard of in 1506, when he wrote to his brother-in-law, John Cabot, that he had reached the coast of America. This letter was written in England, where Cabot had lived for some years before setting out on the voyage. It is possible that Cabot died in England, but this cannot be confirmed because no record of his death has survived. If Cabot did die in England, then he would have been buried there. However, there is no evidence that he ever",
+    "naive_graph_answer": "douard Boulanger, who was captured by the Incas and remained with them for many years. Cabot's wife, Catalina, died in 1547, and Cabot remarried in 1523 to Catalina's sister-in-law, Catalina de Medrano. It is not known if the marriage produced offspring. Since the Spanish wills of both Catalina (1547) and Sebastian (1548) name nieces of Catalina as their heirs, it is unlikely that by the time of Catalina's death, the pair had children surviving from their marriage",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "With whom does the entertainers' manager have an affair?",
+    "ground_truth": "Lisa, the blacksmith's wife.",
+    "vector_answer": "ylbert are both killed. The episode ends with the A-Team returning to their base, where they find a new member, a young man named Jack, who has been sent by the CIA to join the team. The episode begins with the A-Team arriving at a remote location, where they are greeted by a group of men dressed in black suits. They are led into a large building, where they are introduced to a mysterious figure known only as \"The Boss\". The Boss explains that he is the leader of a secret organization called \"The Syndicate\", and that he has chosen the A-Team to be his agents. The",
+    "naive_graph_answer": ". The two men have a falling out over a business deal, and Lord Gray decides to take revenge by having his daughter marry Hannibal. However, when Lord Gray learns that Hannibal has already married a woman named Mary, he becomes enraged and vows to kill Hannibal. In order to prevent this from happening, Lord Gray hires a hitman to kill Hannibal. The hitman, however, is killed by Hannibal himself while trying to kill him. This leads to a series of events that ultimately lead to Lord Gray's death.\nThe episode begins with Hannibal and his wife Mary arriving at their new home, a large mansion in",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "Who is the first person that falls under Vigo's spell?",
+    "ground_truth": "Dr. Janosz Poha",
+    "vector_answer": "to]; c. 1450 \u2013 15 Januar 1506) was an English merchant and explorer who led the first European exploration of the North American continent in 1497\u201398. He was the first European to reach Newfoundland and Labrador, and the first to sight land in the present-day United States, Canada, Greenland, and possibly Russia.\n\nTheodore Roosevelt\nRoosevelt was born in New York City on April 14, 1858. He was the second of five children born to William Henry Roosevelt and Martha Yarrington Roosevelt. His father was a",
+    "naive_graph_answer": "\u2013 15 Januar 1506) was an English merchant and explorer who led the first European exploration of the North American continent in 1497\u201398. He was the first European to reach Newfoundland and Labrador, and the first European to sight the eastern coast of North America.\n\nTheodore Roosevelt\nRoosevelt was born in New York City's Fifth Avenue neighborhood to John D. and Margaret \"Margie\" (n\u00e9e Corbett) Roosevelt. His father was the president of the Standard Oil Company, which had become the largest corporation in the world during his lifetime. His mother was a descendant of Irish",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "What nationality is Ruth Anvoy?",
+    "ground_truth": "She is an American.",
+    "vector_answer": "elle Huxtable in the 1970s sitcom The Cosby Show. In 1972, she starred in the short-lived ABC sitcom The Joy of Joy, which ran only one season. She has also had roles in films such as The Great Escape, The Longest Yard, and The Manchurian Candidate.\n\nThe Joy of Joy\nThe Joy of Joy is an American sitcom that aired on ABC from September 1972 to January 1973. It starred Joy Patricia Harmon as Joy, a single mother who runs a beauty salon. The show was created by Don Pardo and produced",
+    "naive_graph_answer": "Volcano (1961). In 1962, she starred in the short-lived CBS sitcom The Happy Years, which ran only one season. She had a recurring role as the mother of the title character in the ABC sitcom The Bob Newhart Show from 1963 to 1965. She also had a supporting role in the 1964 film The Great Escape.\n\nJoyce Johnson\nJoyce Johnson (born November 14, 1947) is an American actress known for her roles in films such as \"The Godfather Part II\" (197",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "NarrativeQA",
+    "question": "Who did the Witch want to have reveal their own lies?",
+    "ground_truth": "The scribe.",
+    "vector_answer": "him the tooth fairy's tooth, but she refuses. He then kidnaps her son, Freddy, and demands that she give him the tooth. She does not comply, and Lecter kills Freddy. Lecter then takes Isabel hostage and demands that she give him the tooth. She again refuses, and Lecter kills her. Lecter then takes Isabel to a secluded cabin where he plans to torture her until she gives him the tooth. However, before he can do so, he is interrupted by Jack Crawford, who arrives at the cabin. Lecter shoots Crawford, but Crawford manages to shoot Lecter in the leg. Lecter flees",
+    "naive_graph_answer": "cruel tactics. She refuses, and Lecter threatens to harm her son, who is also a vampire. Isabel finally sells the farm to Lecter, who plans to use it as a base for his new empire. Lecter hires a team of assassins to carry out the deal, including a young woman named Isabella, who is secretly a vampire. Lecter then sends a message to Isabel, telling her that he will come to collect her at midnight. However, when Lecter arrives, he discovers that Isabella is actually a werewolf, and he is unable to kill her. Instead, he decides to keep her as a pet",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "How is the ground truth for fake news established?",
+    "ground_truth": "",
+    "vector_answer": ", when the discovery of the neutron led to the development of nuclear physics. The field of nuclear physics is concerned with the structure and interactions of atomic nuclei, and the properties of elementary particles such as protons, neutrons, electrons, photons, and neutrinos. Nuclear physics is one of the oldest branches of physics, dating back to the early 19th century. It is closely related to quantum mechanics, and its theories have been used to explain many phenomena in nature, from the behavior of atoms and molecules to the workings of stars and galaxies. Nuclear physics is an interdisciplinary field that draws on expertise from many other fields, including chemistry",
+    "naive_graph_answer": ". The discovery of quarks in 1964 led to the formulation of quantum chromodynamics, a theory of strong interactions between elementary particles. The discovery of the Higgs boson in 2012 confirmed the existence of the Higgs field, which gives mass to other particles. The Standard Model of particle physics, which includes the three forces of nature, is based on these fundamental particles and their interactions. The Standard Model explains the behavior of all known matter and antimatter, and predicts the existence of dark matter and dark energy. The Standard Model also provides a framework for testing new theories of physics beyond the Standard Model.",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "What is the GhostVLAD approach?",
+    "ground_truth": "",
+    "vector_answer": "does actors.\"\n\nThe film industry is full of stories of directors who have become obsessed with their work and lost sight of everything else. But there are also many examples of directors who have found ways to maintain a healthy perspective. One such director is Bill Forsyth, whose latest film, \"Still Alice,\" tells the story of a woman diagnosed with early-onset Alzheimer's disease. In an interview with The New York Times, Forsyth discusses his approach to directing the film and why he believes it is important to keep a sense of humor in even the most serious of situations.\nIn Still Alice, Forsyth takes a different approach to storytelling than he",
+    "naive_graph_answer": "them a lot of freedom to do their own thing, and let them make choices based on their personalities. He would also give them a lot of emotional depth and allow them to express themselves through their actions.\"\n\nThe film's director, Bill Leven, says, \"We wanted to create a character who was both a wolf and a man. We wanted to explore the relationship between the two. We wanted to show the complexity of the relationship between the two species. We wanted to show the strength of the bond between the two species. We wanted to show the power of the bond between the two species. We wanted to show the power of the",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "By how much does their model outperform the state of the art results?",
+    "ground_truth": "",
+    "vector_answer": "large scale. The new crest features a stylized version of the original crest, but with a slightly different color scheme. The new crest also includes a small image of the club's logo, which is centered above the crest. The new crest is intended to make the club's identity more recognizable and consistent across all media outlets. Additionally, the new crest is designed to reflect the club's commitment to excellence and innovation in its sport.\nThe club's logo consists of two interlocking rings, one red and one blue. The red ring represents the club's heritage and tradition, while the blue ring represents the club's modernity and progressiveness.",
+    "naive_graph_answer": "to the club's core values, but the club defended its decision to change the crest, saying that it was necessary to maintain consistency between the crest and the club's brand identity. In June 2015, the club announced that it would launch a new crest, which would feature a simplified version of the current crest, along with a new logo and colors. The new crest was unveiled during the club's annual meeting in September 2015. The new crest features a simplified version of the current crest, along with a new logo and colors. The new crest was unveiled during the club's annual meeting in September 2",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "What additional features and context are proposed?",
+    "ground_truth": "",
+    "vector_answer": "the Union for a Popular Movement party.\n\nThe Last Days of Pompeii\nThe Last Days of Pompeii is a 1937 British film directed by Victor Saville and starring Ronald Colman, Leslie Howard, and Merle Oberon. It was adapted from the novel by Edward Bulwer-Lytton. The film depicts the final days of ancient Roman city of Pompeii after it was buried under volcanic ash following the eruption of Mount Vesuvius in AD 79.\n\nThe Last Days of Pompeii\nThe Last Days of Pompeii is a 1937 British film directed by Victor Saville and starring Ronald",
+    "naive_graph_answer": "5:\nThe 2013\u201314 season was the 11th season in the history of the club in the top flight of English football, the Premier League. It was also the first season since 2007\u201308 under manager Roberto Mancini that Manchester City had finished outside the top four places in the league table. The team started the season well, winning their opening three matches, but then lost six consecutive games, which included two defeats against rivals Manchester United. They were relegated from the Premier League after finishing bottom of the table, having scored only 17 goals in 22 games",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "Which Facebook pages did they look at?",
+    "ground_truth": "",
+    "vector_answer": ".\nSmith, A.C.H. (1985). Sebastian Cabot: The Navigator. London: Weidenfeld & Nicolson. ISBN 978-0-340-40000-0.\nWright, John (1999). Sebastian Cabot: The Navigator. New York: St. Martin's Press. ISBN 978-0-312-27000-0.\nZimmermann, J\u00fcrgen (2000). Sebastian Cabot: The Navigator. New York: St. Martin's Press. ISBN 9",
+    "naive_graph_answer": "e\n) (1974). The European Discovery of America: The Southern Voyages 1492-1616. Oxford University Press.\nRuddock, Alwyn A. (2007). \"The Reputation of Sebastian Cabot\". Historical Research. 47 (115): 95\u201399 \u2013 via Wiley Online Library.\nSmith, A. C. H. (1985). Sebastian Cabot: His Life and Times. London: Weidenfeld & Nicolson.\nTucker, John (1999). \"Sebastian Cabot: The",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "Do the hashtag and SemEval datasets contain only English data?",
+    "ground_truth": "",
+    "vector_answer": "au, which were all American colonies until independence. The United Kingdom has also had a protectorate in Hong Kong since 1841, and a colony in Macau since 1999. The United States has had a protectorate in Guam since 1898 and a colony in Puerto Rico since 1898. The United States also has a colony in the Northern Mariana Islands, which are an unincorporated territory of the United States. The United States has had a colony in the Virgin Islands since 1667, and a colony in American Samoa since 1899",
+    "naive_graph_answer": "also an official language in the United Kingdom, Canada, Australia, New Zealand, Ireland, Malta, and Singapore. In addition, English is widely spoken as a second language in many countries around the world, including Brazil, India, Nigeria, Pakistan, South Africa, and the United Arab Emirates. English is also the first language of many people who live outside these countries, such as those from Hong Kong, Macau, Taiwan, Malaysia, Singapore, Thailand, Indonesia, the Philippines, Sri Lanka, Nepal, Bangladesh, and Mauritius. English is also the most commonly taught foreign language in schools worldwide, and is often considered to be the",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "What type of evaluation is proposed for this task?",
+    "ground_truth": "",
+    "vector_answer": "He also discovered the electron, and shared the 1935 Nobel Prize in Chemistry with Linus Pauling for their work on the structure of proteins.\n\nThe Man Who Knew Infinity\nThe Man Who Knew Infinity is a 2015 Indian biographical drama film directed by Rajkumar Hirani and produced by Vidhu Vinod Chopra under the banner of Vidhu Vinod Chopra Films Pvt Ltd. It is based on the life of Srinivasa Ramanujan, a mathematician who lived from 1887 to 1920. The film stars Dev Patel as R",
+    "naive_graph_answer": "946 and received the Order of Merit in 1950. He died in 1974.\nPassage 2:\nThe 1994\u201395 season was the 10th season in the history of the English football club Watford F.C., and their first season back in the Football League after a three-year absence due to financial difficulties. The season saw Watford finish in 16th place in Division Two, just one point above the relegation zone. The club were relegated to Division Three at the end of the season.\n\nQuestion: What year did Sir James Chadwick",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "What are the datasets used for evaluation?",
+    "ground_truth": "",
+    "vector_answer": "): 673\u2013700 \u2013 via JSTOR.\nSantos, Carlos Alberto. \"Sebastian Cabot: A New Perspective on His Life and Work\". Journal of the Early American Studies. 10 (1): 1\u201320 \u2013 via JSTOR.\nWright, John. \"Sebastian Cabot\". The Oxford Dictionary of National Biography. Oxford University Press. Retrieved 2016-03-22.\nZimmermann, Michael. \"Sebastian Cabot\". The Oxford Companion to World Literature. Oxford University Press. Retrieved 2016-03",
+    "naive_graph_answer": "\u2013 via JSTOR.\nSantos, Maria. \"Sebastian Cabot: The Man Who Discovered America\". The New York Times. Retrieved 2016-09-19.\nVillarreal, Juan Carlos. \"Sebastian Cabot: The Man Who Discovered America\". The New York Times. Retrieved 2016-09-19.\nWright, John. \"Sebastian Cabot\". The New York Times. Retrieved 2016-09-19.\nZimmermann, Michael. \"Sebastian Cabot\". The New York Times.",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "How does this approach compare to other WSD approaches employing word embeddings?",
+    "ground_truth": "",
+    "vector_answer": "500 (Oxford University Press, 2005), p. 100. The first recorded voyage by a ship named \"Vasco da Gama\" was made by the Portuguese navigator Pedro \u00c1lvares Cabral in 1498. The name \"Vasco da Gama\" was given to him by the Portuguese king John I after his return from this voyage. The Portuguese explorer Vasco da Gama was the first European to reach India directly from the East Indies via the Cape of Good Hope, thus opening up trade routes between Europe and Asia. The Portuguese Empire had been established in India since",
+    "naive_graph_answer": "2012), p. 104. The club's home ground since its foundation in 1878 has been Goodison Park, located in the city centre. Everton have won 18 major trophies, including six FA Cups, three League Championships, two UEFA Champions Leagues, one Inter-Cities Fairs Cup, one European Cup Winners' Cup, one European Super Cup, one FIFA Club World Cup, and one UEFA Super Cup. They are also the most successful club in English football history, having played in every season of the Football League from its inception until 2019, and they",
+    "entity_graph_answer": ""
+  },
+  {
+    "dataset": "Qasper",
+    "question": "How does their ensemble method work?",
+    "ground_truth": "",
+    "vector_answer": "structure\nThe first successful atomistic model of the atom was proposed by J.J. Thomson in 1897. In his model, electrons were assumed to be bound to the nucleus by electrostatic forces. The electron mass was much smaller than the proton mass, so the electron could orbit the nucleus without any significant binding force. Thomson's model was later refined by Rutherford in 1911, who proposed that the electrons were bound to the nucleus by a strong electric repulsion between the positively charged protons and the negatively charged electrons. This model was supported by the observation that the spectra of atoms were symmetrical about the",
+    "naive_graph_answer": "utherford's experiments on alpha decay led him to propose that the atomic nucleus consists of a small number of positively charged particles called protons, each having a positive charge of about +1e, and a much larger number of negatively charged particles called electrons, each having a negative charge of about -1e. Rutherford's model was based on the idea that atoms were electrically neutral. In 1897, Ernest Rutherford published his famous experiment in which he observed the scattering of alpha particles from gold foil. The alpha particles were deflected by an angle of about 6 degrees. Rutherford concluded that the alpha particles were scattered",
+    "entity_graph_answer": ""
+  }
+]

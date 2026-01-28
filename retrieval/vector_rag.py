@@ -14,10 +14,6 @@ CHUNKS_CACHE_PATH = "artifacts/chunks/chunks.npy"
 
 
 class VectorRAG:
-    """
-    Vector-based RAG using dense embeddings and cosine similarity.
-    Embeddings are cached on disk for reuse.
-    """
 
     def __init__(self, embedding_model: str = EMBEDDING_MODEL):
         self.embedding_model_name = embedding_model
@@ -75,13 +71,20 @@ class VectorRAG:
         return self._enforce_token_budget([candidates[i] for i in top_idx])
 
     def generate(self, query: str, retrieved_chunks: List[str], llm):
+        if not retrieved_chunks:
+            return ""
+
         context = "\n\n".join(retrieved_chunks)
+
         prompt = (
-            "Use the following context to answer the question.\n\n"
+            "Answer the question using ONLY the information in the context below.\n"
+            "If the answer is not explicitly stated, reply with \"Insufficient information.\".\n"
+            "Return ONLY the short answer.\n\n"
             f"Context:\n{context}\n\n"
-            f"Question:\n{query}"
+            f"Question: {query}\nAnswer:"
         )
         return llm.generate(prompt)
+
 
     def _embed_texts(self, texts: List[str]) -> np.ndarray:
         with torch.no_grad():

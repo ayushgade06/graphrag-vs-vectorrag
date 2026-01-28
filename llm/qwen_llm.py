@@ -12,7 +12,6 @@ class QwenLLM:
         self.mock_mode = mock_mode
 
         if self.mock_mode:
-
             self.device = "mock"
             self.tokenizer = None
             self.model = None
@@ -22,8 +21,6 @@ class QwenLLM:
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
         else:
             self.device = device
-
-
 
         self.tokenizer = AutoTokenizer.from_pretrained(
             LLM_NAME,
@@ -37,7 +34,7 @@ class QwenLLM:
             self.model = AutoModelForCausalLM.from_pretrained(
                 LLM_NAME,
                 torch_dtype=torch.float16,
-                device_map="auto",
+                device_map="cuda",           
                 trust_remote_code=True,
                 low_cpu_mem_usage=True
             )
@@ -46,22 +43,13 @@ class QwenLLM:
                 LLM_NAME,
                 torch_dtype=torch.float32,
                 trust_remote_code=True
-            )
-            self.model.to("cpu")
+            ).to("cpu")
 
         self.model.eval()
 
     def generate(self, prompt: str) -> str:
-        """
-        Generate text from Qwen with SAFE, BOUNDED, TIME-EFFICIENT decoding.
-        """
-
         if self.mock_mode:
-            return (
-                "This is a mock answer generated for testing purposes. "
-                "The actual answer would appear here."
-            )
-
+            return "Mock response."
 
         inputs = self.tokenizer(
             prompt,
@@ -71,19 +59,19 @@ class QwenLLM:
             padding=False
         ).to(self.device)
 
-
         max_tokens = min(LLM_MAX_TOKENS, 128)
 
         with torch.no_grad():
             output = self.model.generate(
                 **inputs,
                 max_new_tokens=max_tokens,
-                do_sample=False,
+                do_sample=False,              
+                temperature=0.0,
+                top_p=1.0,
                 use_cache=True,
                 eos_token_id=self.tokenizer.eos_token_id,
                 pad_token_id=self.tokenizer.eos_token_id,
             )
-
 
         generated_tokens = output[0][inputs["input_ids"].shape[-1]:]
 
@@ -93,3 +81,6 @@ class QwenLLM:
         )
 
         return decoded.strip()
+
+
+

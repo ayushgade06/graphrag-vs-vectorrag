@@ -1,42 +1,27 @@
-# Python
-__pycache__/
-*.py[cod]
-*.so
-
-# Virtual environments
+# ---- Virtual environments ----
 .venv/
-venv/
+.venv*/
+.venv_graphrag_new
 env/
+__pycache__/
 
-# ML / AI artifacts
-models/
-checkpoints/
-embeddings/
-indexes/
-cache/
-*.bin
-*.pt
-*.pth
-*.onnx
+# ---- Artifacts / outputs ----
+artifacts/
+*.npy
+*.json
 
-# HuggingFace
-.huggingface/
-hf_cache/
+# ---- Datasets ----
+data/longbench_raw/
 
-# Logs & outputs
-logs/
-outputs/
-results/
+# ---- Logs & caches ----
+*.log
+.cache/
+.ipynb_checkpoints/
 
-# OS / editor
+# ---- OS / editor junk ----
 .DS_Store
-Thumbs.db
 .vscode/
 .idea/
 
-# WSL
-*.swp
-
-# Datasets
-data/longbench_raw/
-
+# ---- Old / backup files ----
+requirements_old.txt

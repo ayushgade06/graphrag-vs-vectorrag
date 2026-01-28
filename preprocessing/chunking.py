@@ -5,14 +5,17 @@ def chunk_documents(documents: List[str], chunk_size: int, overlap: int) -> List
     chunks = []
 
     for doc in documents:
-        tokens = doc.split()
         start = 0
+        length = len(doc)
 
-        while start < len(tokens):
+        while start < length:
             end = start + chunk_size
-            chunks.append(" ".join(tokens[start:end]))
-            start = end - overlap
+            chunk = doc[start:end].strip()
 
+            if chunk:
+                chunks.append(chunk)
+
+            start = end - overlap
             if start < 0:
                 start = 0
 

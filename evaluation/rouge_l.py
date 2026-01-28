@@ -12,6 +12,9 @@ def lcs_length(x, y):
 
 
 def compute_rouge_l(predicted: str, ground_truth: str) -> float:
+    if not predicted or not ground_truth:
+        return 0.0
+
     pred = predicted.split()
     gt = ground_truth.split()
 

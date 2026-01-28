@@ -12,7 +12,7 @@ DATASET_FILES = {
 }
 
 
-def load_longbench_subset(subset_name: str, limit: Optional[int] = 10):
+def load_longbench_subset(subset_name: str, limit: Optional[int] = 50):
     if subset_name not in DATASET_FILES:
         raise ValueError(f"Unknown subset: {subset_name}")
 

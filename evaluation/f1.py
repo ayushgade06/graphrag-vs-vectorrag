@@ -9,6 +9,9 @@ def normalize_text(text: str):
 
 
 def compute_f1(predicted: str, ground_truth: str) -> float:
+    if not predicted or not ground_truth:
+        return 0.0
+
     pred_tokens = normalize_text(predicted)
     gt_tokens = normalize_text(ground_truth)
 
