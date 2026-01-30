@@ -500,6 +500,10 @@ def log(msg):
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
 
 
+# ------------------------
+# ORACLE + RECALL HELPERS
+# ------------------------
+
 def oracle_text_span(context, ground_truth):
     if not context or not ground_truth:
         return ""
@@ -520,6 +524,25 @@ def oracle_entity_hit(context, entity):
     joined = " ".join(context).lower()
     return 1.0 if entity.lower() in joined else 0.0
 
+
+def recall_at_k(context, ground_truth):
+    """
+    Binary recall@K:
+    1.0 if ground truth string appears in any retrieved chunk.
+    """
+    if not context or not ground_truth:
+        return 0.0
+
+    gt = ground_truth.lower().strip()
+    for chunk in context:
+        if gt in chunk.lower():
+            return 1.0
+    return 0.0
+
+
+# ------------------------
+# MAIN EXPERIMENT
+# ------------------------
 
 def run_experiment():
     random.seed(SEED)
@@ -558,6 +581,9 @@ def run_experiment():
     gt_counts = defaultdict(int)
     total_counts = defaultdict(int)
 
+    # 🔹 For Google Colab strong-LLM testing
+    generation_inputs = []
+
     for i, qa in enumerate(qas, 1):
         dataset = qa["dataset"]
         q = qa["question"]
@@ -593,16 +619,33 @@ def run_experiment():
             "entity_graph_answer": ent_ans,
         })
 
+        # 🔹 Export for Colab (generation-only test)
+        if dataset == "NarrativeQA" and gt.strip():
+            generation_inputs.append({
+                "dataset": dataset,
+                "question": q,
+                "context": vec_ctx,
+                "ground_truth": gt
+            })
+
         row = {
             "dataset": dataset,
+
             "vector_f1": 0.0,
             "graph_f1": 0.0,
+
             "vector_oracle_f1": 0.0,
             "graph_oracle_f1": 0.0,
+
             "vector_rouge": 0.0,
             "graph_rouge": 0.0,
+
             "vector_oracle_rouge": 0.0,
             "graph_oracle_rouge": 0.0,
+
+            # 🔹 NEW: recall@K
+            "vector_recall": recall_at_k(vec_ctx, gt),
+            "graph_recall": recall_at_k(naive_ctx, gt),
         }
 
         if dataset == "NarrativeQA" and gt.strip():
@@ -615,10 +658,13 @@ def run_experiment():
             row.update({
                 "vector_f1": compute_f1(vec_eval, gt),
                 "graph_f1": compute_f1(naive_eval, gt),
+
                 "vector_oracle_f1": compute_f1(vec_oracle, gt),
                 "graph_oracle_f1": compute_f1(naive_oracle, gt),
+
                 "vector_rouge": compute_rouge_l(vec_eval, gt),
                 "graph_rouge": compute_rouge_l(naive_eval, gt),
+
                 "vector_oracle_rouge": compute_rouge_l(vec_oracle, gt),
                 "graph_oracle_rouge": compute_rouge_l(naive_oracle, gt),
             })
@@ -633,6 +679,9 @@ def run_experiment():
 
     with open("artifacts/analysis/qualitative_analysis.json", "w") as f:
         json.dump(qualitative, f, indent=2)
+
+    with open("artifacts/analysis/generation_inputs.json", "w") as f:
+        json.dump(generation_inputs, f, indent=2)
 
     for d in total_counts:
         log(f"Dataset {d}: {gt_counts[d]}/{total_counts[d]} QAs have ground truth")

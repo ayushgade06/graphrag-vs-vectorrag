@@ -14,21 +14,17 @@ DATASET_FILES = {
 }
 
 def _extract_answer_from_item(item: dict) -> str:
-    # Try common fields and shapes in order
     candidates = []
 
-    # common flat fields
     for k in ("ground_truth", "groundtruth", "answer", "label", "gold_answer", "gold", "target"):
         if k in item:
             candidates.append(item[k])
 
-    # answers as list
     if "answers" in item and isinstance(item["answers"], (list, tuple)):
         candidates.append(item["answers"])
     if "answer_texts" in item and isinstance(item["answer_texts"], (list, tuple)):
         candidates.append(item["answer_texts"])
 
-    # nested shapes: list of dicts with 'text' or 'answer'
     if isinstance(item.get("answers"), list):
         for a in item["answers"]:
             if isinstance(a, dict):
@@ -37,17 +33,16 @@ def _extract_answer_from_item(item: dict) -> str:
                 elif "answer" in a:
                     candidates.append(a["answer"])
 
-    # final normalization: pick first non-empty string
     for cand in candidates:
         if isinstance(cand, str) and cand.strip():
             return cand.strip()
         if isinstance(cand, (list, tuple)) and len(cand) > 0:
-            # list of strings -> first non-empty
+
             for e in cand:
                 if isinstance(e, str) and e.strip():
                     return e.strip()
                 if isinstance(e, dict):
-                    # try dict -> text/answer
+
                     if "text" in e and isinstance(e["text"], str) and e["text"].strip():
                         return e["text"].strip()
                     if "answer" in e and isinstance(e["answer"], str) and e["answer"].strip():
