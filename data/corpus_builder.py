@@ -6,9 +6,6 @@ CORPUS_CACHE_PATH = "artifacts/corpus/corpus.json"
 
 
 def extract_ground_truth(sample: Dict) -> str:
-    """
-    Robust answer extraction for LongBench-style datasets.
-    """
     if "answer" in sample and isinstance(sample["answer"], str) and sample["answer"].strip():
         return sample["answer"].strip()
 
