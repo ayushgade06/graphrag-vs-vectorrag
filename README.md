@@ -1,154 +1,149 @@
 # GraphRAG vs. VectorRAG: A Controlled Comparative Study
 
 ## Project Overview
-**graphrag-vs-vectorrag** is a research-oriented project designed to conduct a **controlled, head-to-head comparison** between **Vector-based Retrieval-Augmented Generation (VectorRAG)** and **Graph-based Retrieval-Augmented Generation (GraphRAG)**.
 
-Unlike production systems or leaderboard-focused evaluations, this project emphasizes **experimental control, interpretability, and reproducibility under resource constraints**. The core objective is to isolate the **retrieval behavior itself** by holding all other variables constant (same LLM, same chunking strategy, same context budget), enabling principled analysis of how vector- and graph-based retrieval behave on long-context reasoning tasks.
+**graphrag-vs-vectorrag** is a research-oriented project designed to conduct a controlled, head-to-head comparison between Vector-based Retrieval-Augmented Generation (VectorRAG) and Graph-based Retrieval-Augmented Generation (GraphRAG).
 
----
+Unlike production systems or leaderboard submissions aimed at maximizing performance metrics, this project prioritizes **experimental control**, **interpretability**, and **resource-constrained reproducibility**. The goal is to isolate the retrieval behaviors of vector and graph modalities under identical conditions (same LLM, same chunking strategies, same context budgets) to better understand their respective strengths and weaknesses in long-context reasoning tasks.
 
 ## Motivation & Goals
-Common RAG comparisons focus on end-task score; this study aims to analyze **why** different retrieval strategies succeed or fail.
 
-**Primary goals:**
-- Study retrieval behavior and long-context reasoning across selected LongBench datasets.  
-- Prioritize experimental rigor and reproducibility over raw performance.  
-- Run experiments on consumer-grade hardware without external APIs.
+The primary motivation for this study is to move beyond "black-box" performance comparisons and analyze _why_ certain retrieval methods succeed or fail.
 
----
+- **Goal**: Study retrieval behavior and long-context reasoning on selected LongBench datasets.
+- **Focus**: Experimental rigor over raw performance metrics.
+- **Constraint**: All experiments are conducted on consumer-grade hardware (RTX 3050 6GB) without external APIs.
 
-## Dataset: Hybrid LongBench Corpus
-We construct a **hybrid corpus** from multiple LongBench subsets to stress-test retrieval paradigms. The corpus mixes:
+## Dataset: The Hybrid Corpus
 
-- **Fact-based retrieval tasks** — where dense vector similarity often excels (sentence-level evidence).  
-- **Multi-hop reasoning tasks** — where graph structures may help by linking distant entities.
+To stress-test both retrieval paradigms, we construct a hybrid corpus derived from **LongBench** subsets. This corpus is specifically designed to include both:
 
-This hybrid design reduces dataset bias so that neither method dominates solely due to dataset composition.
+1.  **Fact-based retrieval tasks**: Where vector similarity often excels (e.g., retrieving specific sentences).
+2.  **Multi-hop reasoning tasks**: Where graph structures theoretically provide an advantage by linking disparate entities across the document.
 
----
+By mixing these subsets, we create a challenging environment that prevents either system from dominating purely due to dataset bias.
 
 ## Implemented Systems
-Three RAG variants are implemented to create clear baselines and contrasts.
 
-### 1. VectorRAG (Dense Baseline)
-- **Mechanism:** Dense passage retrieval using `BAAI/bge-base-en-v1.5` embeddings.  
-- **Role:** Strong standard baseline.  
-- **Process:** Chunk documents → embed → index → retrieve by cosine similarity.
+Three distinct RAG variants are implemented to provide a comprehensive baseline and experimental range.
+
+### 1. VectorRAG (Density Baseline)
+
+- **Mechanism**: Standard dense passage retrieval using `BAAI/bge-base-en-v1.5` embeddings.
+- **Role**: Acts as the strong, standard baseline for modern RAG systems.
+- **Process**: Chunks are embedded and stored in a vector index; retrieval is performed via cosine similarity.
 
 ### 2. Naive GraphRAG (Lower-Bound Baseline)
-- **Mechanism:** Retrieval-only graph using linear/structural adjacency (no semantic extraction).  
-- **Role:** Lower-bound test to see if simple graph structure helps over dense vectors.  
-- **Limitation:** No entity extraction or semantic graph modeling.
+
+- **Mechanism**: A retrieval-only graph approach that connects chunks linearly or by simple structural adjacency, without deep semantic extraction.
+- **Role**: Serves as a lower-bound baseline to determine if _any_ graph structure provides benefit over pure vector retrieval without complex entity modeling.
+- **Limitation**: Does not perform entity extraction or community detection.
 
 ### 3. Entity-based GraphRAG (Reduced-Scale)
-- **Mechanism:** Deterministic entity graph built with **spaCy NER**.  
-- **Graph design:** Nodes are named entities; edges indicate co-occurrence or structural proximity.  
-- **Constraint:** No LLM-based extraction or community summarization (keeps compute low).  
-- **Role:** Tests lightweight semantic graphs under strict resource limits.
 
----
+- **Mechanism**: Deterministic graph construction using **spaCy NER** (Named Entity Recognition). Nodes represent entities, and edges represent co-occurrence or structural proximity.
+- **Constraint**: To run on limited hardware, **no LLM-based entity extraction** or community summarization is used.
+- **Role**: Tests the utility of semantic graphs constructed via lightweight, deterministic NLP tools.
 
 ## Experimental Setup & Reproducibility
 
-### Hardware & Environment
-- **GPU:** NVIDIA RTX 3050 (6GB VRAM)  
-- **RAM:** 16GB system memory  
-- **Execution:** Fully local; **no external API calls**
+To ensure a fair comparison, all variables except the retrieval mechanism are strictly controlled.
 
-### Controlled Parameters (see `config/experiment_config.py`)
-- **Generator LLM:** `Qwen/Qwen2-1.5B-Instruct`  
-- **Embedding Model:** `BAAI/bge-base-en-v1.5`  
-- **Chunk size:** 512 tokens  
-- **Chunk overlap:** 50 tokens  
-- **Top-K retrieval:** 10  
-- **Context budget:** 1024 tokens
+### Hardware Constraints
 
-All systems use identical settings so the retrieval mechanism is the only independent variable.
+- **GPU**: NVIDIA RTX 3050 (6GB VRAM)
+- **RAM**: 16GB System Memory
+- **Environment**: Local execution only; no external API calls.
 
----
+### Controlled Parameters
+
+All systems share the following configuration (see `config/experiment_config.py`):
+
+- **Generator LLM**: `Qwen/Qwen2-1.5B-Instruct`
+- **Embedding Model**: `BAAI/bge-base-en-v1.5`
+- **Chunk Size**: 512 tokens
+- **Chunk Overlap**: 50 tokens
+- **Retrieval Parameters**: Top-k = 10
+- **Context Budget**: Max 1024 tokens
 
 ## Repository Structure
+
 ```
 graphrag-vs-vectorrag/
-├── config/             # Seeds, model names, hyperparameters
+├── config/             # Configuration files (seeds, model names, hyperparameters)
 ├── data/               # Raw and processed LongBench datasets
-├── preprocessing/      # Chunking and corpus construction
-├── retrieval/          # VectorRAG and GraphRAG implementations
-├── llm/                # Local LLM inference wrappers (Qwen/HF)
-├── evaluation/         # Metric computation and diagnostics
-├── experiments/        # End-to-end experimental pipeline (entrypoint)
-├── artifacts/          # Stored indices, graphs, and analysis outputs
-├── scripts/            # Utility scripts (downloads, checks)
+├── preprocessing/      # Chunking, text cleaning, and corpus construction
+├── retrieval/          # Implementations of VectorRAG and GraphRAG engines
+├── llm/                # Local LLM inference wrappers (Qwen/HuggingFace)
+├── evaluation/         # Metrics calculation (F1, Exact Match, etc.)
+├── experiments/        # Scripts to run end-to-end experimental pipelines
+├── artifacts/          # stored indices, graphs, and analysis outputs
+├── scripts/            # Utility scripts (downloading models, checking data)
 └── README.md           # Project documentation
 ```
-
----
 
 ## How to Run
 
 ### 1. Installation
-Ensure Python 3.10+ and a CUDA-capable environment.
+
+Ensure you have Python 3.10+ and a CUDA-capable GPU environment.
 
 ```bash
+# Clone the repository
 git clone https://github.com/ayushgade06/graphrag-vs-vectorrag.git
 cd graphrag-vs-vectorrag
-python -m venv .venv
-source .venv/bin/activate        # or `.venv\Scripts\activate` on Windows
+
+# Install dependencies (recommended to use a virtual environment)
 pip install -r requirements.txt
 ```
 
----
+### 2. Data Preparation
 
-### 2. Run Experiments (single entry point)
-The repository uses a single canonical entrypoint that runs the full pipeline: corpus construction, retrieval, generation, and evaluation.
+Construct the hybrid corpus from LongBench data:
 
 ```bash
+python data/corpus_builder.py
+```
+
+### 3. Run Experiments
+
+Execute the main experiment pipeline. This will run retrieval and generation for all defined systems:
+
+```bash
+# Ensure your generic HF_TOKEN is set if accessing gated models, though Qwen/BAAI are usually public.
 python experiments/run_experiment.py
 ```
 
-**Notes:**
-- The first run will download required models (Qwen, BGE) and may take time and disk space.  
-- Outputs (aggregated metrics, qualitative logs) are written to `artifacts/analysis/`.
+_Note: The first run will download necessary models (Qwen, BGE) which may take time._
 
----
+### 4. Evaluate Results
 
-## Outputs & Where to Look
-- `artifacts/analysis/` — qualitative analysis JSON, generation logs, and diagnostics.  
-- Terminal — aggregated results table printed after the run.  
-- Additional artifacts (indices, graphs) saved under `artifacts/` for reproducibility.
+Generate evaluation metrics based on the experiment outputs:
 
----
+```bash
+python evaluation/evaluate_results.py
+```
 
 ## Interpreting Results
 
-### What the results indicate
-- Relative utility of deterministic entity graphs vs. dense vectors under strict compute constraints.  
-- Failure modes: e.g., vector retrieval missing multi-hop connections; graph traversal introducing noise.  
-- A relative ordering of methods for the standardized constraint set used.
+**What the results MEAN:**
 
-### What they do not indicate
-- Peak GraphRAG performance (LLM-based extraction and global summarization were intentionally disabled).  
-- Direct comparability to leaderboard runs using GPT-4 or much larger context budgets.
+- They indicate how well deterministic entity graphs perform against dense vectors _under strict compute constraints_.
+- They highlight specific failure modes: e.g., where vector search misses multi-hop connections or where graph traversal introduces noise.
+- They provide a relative ordering of methods for this specific standardized constraint set.
 
----
+**What the results do NOT mean:**
+
+- They do not represent the absolute peak performance of GraphRAG (as expensive LLM-extraction and global summaries were disabled).
+- They are not directly comparable to leaderboards using GPT-4 or differing context windows.
 
 ## Limitations & Disclaimers
-- **Metric noise:** F1 / ROUGE / recall are imperfect proxies for "reasoning". Use qualitative diagnostics.  
-- **Ground truth heuristics:** LongBench target answers are used, but retrieval-ground-truth is approximate.  
-- **Graph construction limits:** spaCy NER is intentionally used (lightweight) and is less expressive than LLM-based extraction.
+
+1.  **Metric Limitations**: Automatic metrics (F1, Recall) may not fully capture the nuance of "reasoning" quality. We rely on them for reproducibility but acknowledge their noise.
+2.  **Ground Truth**: LongBench provides target answers, but "retrieval ground truth" is heuristic. We evaluate based on the utility of the context for the final answer.
+3.  **Graph Construction**: The entity graph is constructed using `spaCy` (sm/md/lg models), which is less accurate than LLM-based extraction. This is a deliberate design choice for efficiency.
 
 ---
 
-## Reproducibility Checklist (Recommended)
-- [ ] Create and activate a virtual environment.  
-- [ ] Confirm CUDA drivers and a compatible PyTorch + CUDA install.  
-- [ ] Ensure sufficient disk space for model downloads.  
-- [ ] Run `python experiments/run_experiment.py` and confirm `artifacts/analysis/` is generated.  
-- [ ] If results vary, set `SEED` in `config/experiment_config.py` to a fixed value.
-
----
-
-## Author
-**Ayush Gade** — Project prepared for a research assignment.
-
----
+_Author: Ayush Gade_
+_Project for Research Assignment_
