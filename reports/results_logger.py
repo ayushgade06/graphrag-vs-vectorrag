@@ -27,7 +27,6 @@ def aggregate_results(results):
             "graph_rouge": round(sum(_get(r, "graph_rouge") for r in rows) / n, 4),
             "graph_oracle_rouge": round(sum(_get(r, "graph_oracle_rouge") for r in rows) / n, 4),
 
-            # NEW
             "vector_recall": round(sum(_get(r, "vector_recall") for r in rows) / n, 4),
             "graph_recall": round(sum(_get(r, "graph_recall") for r in rows) / n, 4),
         }
