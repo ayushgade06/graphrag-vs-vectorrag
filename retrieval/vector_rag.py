@@ -86,11 +86,14 @@ class VectorRAG:
         context = "\n\n".join(retrieved_chunks)
 
         prompt = (
-            "Answer the question using the information in the context below.\n"
-            "Be concise and factual.\n\n"
+            "Answer the question using ONLY exact phrases from the context below.\n"
+            "Do NOT paraphrase.\n"
+            "If possible, copy the shortest exact span from the context that answers the question.\n"
+            "If the answer is an entity, output only the entity name.\n\n"
             f"Context:\n{context}\n\n"
-            f"Question: {query}\nAnswer:"
+            f"Question: {question}\nAnswer:"
         )
+
 
         return llm.generate(prompt)
 

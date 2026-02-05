@@ -16,24 +16,19 @@ from data.corpus_builder import build_hybrid_corpus
 from preprocessing.chunking import chunk_documents
 from retrieval.vector_rag import VectorRAG
 from retrieval.naive_graph_rag import NaiveGraphRAG
-from retrieval.entity_graph_rag import EntityGraphRAG
+from retrieval.full_graph_rag import FullGraphRAG
 from llm.qwen_llm import QwenLLM
+from llm.api_llm import APILLM
 from evaluation.f1 import compute_f1
 from evaluation.rouge_l import compute_rouge_l
 from evaluation.normalize import normalize_answer
 from reports.results_logger import aggregate_results, print_results_table
 
 
-ENABLE_ENTITY_GRAPHRAG = True
-ENTITY_SAMPLE_LIMIT = 5
-
-
 def log(msg):
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
 
 
-
-# oracle + recall utils
 def oracle_text_span(context, ground_truth):
     if not context or not ground_truth:
         return ""
@@ -58,12 +53,12 @@ def oracle_entity_hit(context, entity):
 def recall_at_k(context, ground_truth):
     if not context or not ground_truth:
         return 0.0
-
     gt = ground_truth.lower().strip()
     for chunk in context:
         if gt in chunk.lower():
             return 1.0
     return 0.0
+
 
 def run_experiment():
     random.seed(SEED)
@@ -73,7 +68,7 @@ def run_experiment():
     os.makedirs("artifacts/analysis", exist_ok=True)
 
     subsets = ["MuSiQue", "WikiMQA", "NarrativeQA", "Qasper"]
-    samples = [load_longbench_subset(s, limit=10) for s in subsets]
+    samples = [load_longbench_subset(s, limit=3) for s in subsets]
 
     docs, qas = build_hybrid_corpus(samples)
 
@@ -88,21 +83,23 @@ def run_experiment():
     naive_graph = NaiveGraphRAG(vector)
     naive_graph.build_graph(chunks)
 
-    entity_graph = None
-    if ENABLE_ENTITY_GRAPHRAG:
-        entity_graph = EntityGraphRAG()
-        entity_graph.build_graph(chunks)
+    if USE_API_LLM:
+        llm = APILLM()
+        log(f"Using API LLM: {API_LLM_NAME}")
+    else:
+        llm = QwenLLM()
+        log(f"Using local LLM: {LLM_NAME}")
 
-    llm = QwenLLM()
-    entity_counter = defaultdict(int)
+    full_graph = FullGraphRAG()
+    log(f"Building Full GraphRAG on {len(chunks)} chunks")
+    full_graph.build_graph(chunks, llm)
+    log("Full GraphRAG graph constructed")
 
     results = []
     qualitative = []
 
     gt_counts = defaultdict(int)
     total_counts = defaultdict(int)
-
-    generation_inputs = []
 
     for i, qa in enumerate(qas, 1):
         dataset = qa["dataset"]
@@ -115,91 +112,77 @@ def run_experiment():
 
         log(f"Evaluating QA {i}/{len(qas)} ({dataset})")
 
+        # -------- VectorRAG --------
         vec_candidates = vector.get_candidates(q, CANDIDATE_POOL_SIZE)
         vec_ctx = vector.retrieve_from_candidates(q, vec_candidates, TOP_K)
         vec_ans = vector.generate(q, vec_ctx, llm)
 
+        # -------- Naive GraphRAG --------
         naive_ctx = naive_graph.retrieve(q, TOP_K)
-        naive_ans = naive_graph.generate(q, naive_ctx, llm)
 
-        ent_ans = ""
-        if entity_graph and entity_counter[dataset] < ENTITY_SAMPLE_LIMIT:
-            ent_ctx = entity_graph.retrieve(q, TOP_K)
-            ent_ans = entity_graph.generate(q, ent_ctx, llm)
-            entity_counter[dataset] += 1
+        # -------- Full GraphRAG --------
+        graph_ctx = full_graph.retrieve(q, TOP_K, llm)
+        graph_ans = full_graph.generate(q, graph_ctx, llm)
 
         qualitative.append({
             "dataset": dataset,
             "question": q,
             "ground_truth": gt,
             "vector_context": vec_ctx,
-            "naive_graph_context": naive_ctx,
             "vector_answer": vec_ans,
-            "naive_graph_answer": naive_ans,
-            "entity_graph_answer": ent_ans,
+            "naive_graph_context": naive_ctx,
+            "full_graph_context": graph_ctx,
+            "full_graph_answer": graph_ans,
         })
-
-        if dataset == "NarrativeQA" and gt.strip():
-            generation_inputs.append({
-                "dataset": dataset,
-                "question": q,
-                "context": vec_ctx,
-                "ground_truth": gt
-            })
 
         row = {
             "dataset": dataset,
-
             "vector_f1": 0.0,
             "graph_f1": 0.0,
-
             "vector_oracle_f1": 0.0,
             "graph_oracle_f1": 0.0,
-
             "vector_rouge": 0.0,
             "graph_rouge": 0.0,
-
             "vector_oracle_rouge": 0.0,
             "graph_oracle_rouge": 0.0,
-
             "vector_recall": recall_at_k(vec_ctx, gt),
-            "graph_recall": recall_at_k(naive_ctx, gt),
+            "graph_recall": recall_at_k(graph_ctx, gt),
         }
 
+        # -------- NarrativeQA (full generation metrics) --------
         if dataset == "NarrativeQA" and gt.strip():
             vec_eval = normalize_answer(vec_ans)
-            naive_eval = normalize_answer(naive_ans)
-
             vec_oracle = oracle_text_span(vec_ctx, gt)
-            naive_oracle = oracle_text_span(naive_ctx, gt)
+
+            graph_eval = normalize_answer(graph_ans)
+            graph_oracle = oracle_text_span(graph_ctx, gt)
 
             row.update({
                 "vector_f1": compute_f1(vec_eval, gt),
-                "graph_f1": compute_f1(naive_eval, gt),
-
                 "vector_oracle_f1": compute_f1(vec_oracle, gt),
-                "graph_oracle_f1": compute_f1(naive_oracle, gt),
-
                 "vector_rouge": compute_rouge_l(vec_eval, gt),
-                "graph_rouge": compute_rouge_l(naive_eval, gt),
-
                 "vector_oracle_rouge": compute_rouge_l(vec_oracle, gt),
-                "graph_oracle_rouge": compute_rouge_l(naive_oracle, gt),
+
+                "graph_f1": compute_f1(graph_eval, gt),
+                "graph_oracle_f1": compute_f1(graph_oracle, gt),
+                "graph_rouge": compute_rouge_l(graph_eval, gt),
+                "graph_oracle_rouge": compute_rouge_l(graph_oracle, gt),
             })
 
+        # -------- WikiMQA (entity oracle) --------
         elif dataset == "WikiMQA" and gt.strip():
             row.update({
                 "vector_oracle_f1": oracle_entity_hit(vec_ctx, gt),
-                "graph_oracle_f1": oracle_entity_hit(naive_ctx, gt),
+                "graph_oracle_f1": oracle_entity_hit(graph_ctx, gt),
             })
 
         results.append(row)
 
+        with open("artifacts/analysis/partial_results.json", "w") as f:
+            json.dump(results, f, indent=2)
+
     with open("artifacts/analysis/qualitative_analysis.json", "w") as f:
         json.dump(qualitative, f, indent=2)
-
-    with open("artifacts/analysis/generation_inputs.json", "w") as f:
-        json.dump(generation_inputs, f, indent=2)
 
     for d in total_counts:
         log(f"Dataset {d}: {gt_counts[d]}/{total_counts[d]} QAs have ground truth")
