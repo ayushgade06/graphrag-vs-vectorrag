@@ -27,7 +27,6 @@ class VectorRAG:
                 f"Fix EMBEDDING_MODEL or download the model locally."
             )
 
-        # 🔒 HARD OFFLINE LOCAL LOAD (HF only, no sentence-transformers)
         self.tokenizer = AutoTokenizer.from_pretrained(
             model_path,
             local_files_only=True
@@ -79,11 +78,12 @@ class VectorRAG:
 
         return self._enforce_token_budget([candidates[i] for i in top_idx])
 
-    def generate(self, question: str, context: List[str], llm) -> str:
+    def generate(self, question: str, context: List[str], llm, instruction: str | None = None) -> str:
         if not context:
             return ""
 
         prompt = (
+            f"{instruction + chr(10) if instruction else ''}"
             "Answer the question using ONLY exact phrases from the context below.\n"
             "Do NOT paraphrase.\n"
             "If possible, copy the shortest exact span from the context that answers the question.\n"

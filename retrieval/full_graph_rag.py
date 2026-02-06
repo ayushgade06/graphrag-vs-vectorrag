@@ -229,11 +229,12 @@ class FullGraphRAG:
 
         return selected
 
-    def generate(self, question: str, context: List[str], llm) -> str:
+    def generate(self, question: str, context: List[str], llm, instruction: str | None = None) -> str:
         if not context:
             return ""
 
         prompt = (
+            f"{instruction + chr(10) if instruction else ''}"
             "Answer the question using ONLY exact phrases from the context below.\n"
             "Do NOT paraphrase.\n"
             "If possible, copy the shortest exact span from the context that answers the question.\n"
@@ -242,7 +243,6 @@ class FullGraphRAG:
             f"Question: {question}\nAnswer:"
         )
 
-
         try:
             ans = llm.generate(prompt)
             if ans and ans.strip():
@@ -250,4 +250,4 @@ class FullGraphRAG:
         except Exception:
             pass
 
-        return "The information is unclear based on the given context."
+        return ""
