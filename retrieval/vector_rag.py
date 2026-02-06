@@ -79,21 +79,18 @@ class VectorRAG:
 
         return self._enforce_token_budget([candidates[i] for i in top_idx])
 
-    def generate(self, query: str, retrieved_chunks: List[str], llm):
-        if not retrieved_chunks:
+    def generate(self, question: str, context: List[str], llm) -> str:
+        if not context:
             return ""
-
-        context = "\n\n".join(retrieved_chunks)
 
         prompt = (
             "Answer the question using ONLY exact phrases from the context below.\n"
             "Do NOT paraphrase.\n"
             "If possible, copy the shortest exact span from the context that answers the question.\n"
             "If the answer is an entity, output only the entity name.\n\n"
-            f"Context:\n{context}\n\n"
+            f"Context:\n{chr(10).join(context)}\n\n"
             f"Question: {question}\nAnswer:"
         )
-
 
         return llm.generate(prompt)
 
