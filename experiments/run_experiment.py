@@ -72,6 +72,19 @@ def recall_at_k(context, ground_truth):
     return 0.0
 
 
+def gold_evidence_recall(context, ground_truth):
+
+    if not context or not ground_truth:
+        return 0.0
+
+    gt_tokens = set(normalize_answer(ground_truth).split())
+    if not gt_tokens:
+        return 0.0
+
+    ctx_tokens = set(normalize_answer(" ".join(context)).split())
+    return 1.0 if len(gt_tokens & ctx_tokens) > 0 else 0.0
+
+
 def run_experiment():
     random.seed(SEED)
     np.random.seed(SEED)
@@ -130,8 +143,6 @@ def run_experiment():
         vec_ctx = vector.retrieve_from_candidates(question, vec_candidates, TOP_K)
         vec_ans = vector.generate(question, vec_ctx, llm, instruction=instruction)
 
-        naive_ctx = naive_graph.retrieve(question, TOP_K)
-
         graph_ctx = full_graph.retrieve(question, TOP_K, llm)
         graph_ans = full_graph.generate(question, graph_ctx, llm, instruction=instruction)
 
@@ -139,22 +150,32 @@ def run_experiment():
             "dataset": dataset,
             "question": question,
             "ground_truth": ground_truth,
+            "vector_context": vec_ctx,
+            "graph_context": graph_ctx,
             "vector_answer": vec_ans,
             "graph_answer": graph_ans,
         })
 
         row = {
             "dataset": dataset,
+
             "vector_f1": 0.0,
             "graph_f1": 0.0,
+
             "vector_oracle_f1": 0.0,
             "graph_oracle_f1": 0.0,
+
             "vector_rouge": 0.0,
             "graph_rouge": 0.0,
+
             "vector_oracle_rouge": 0.0,
             "graph_oracle_rouge": 0.0,
+
             "vector_recall": recall_at_k(vec_ctx, ground_truth),
             "graph_recall": recall_at_k(graph_ctx, ground_truth),
+
+            "vector_ger": gold_evidence_recall(vec_ctx, ground_truth),
+            "graph_ger": gold_evidence_recall(graph_ctx, ground_truth),
         }
 
         if dataset == "NarrativeQA" and ground_truth.strip():
@@ -181,6 +202,9 @@ def run_experiment():
 
     for d in total_counts:
         log(f"Dataset {d}: {gt_counts[d]}/{total_counts[d]} QAs have ground truth")
+
+    with open("artifacts/analysis/qualitative_analysis.json", "w") as f:
+        json.dump(qualitative, f, indent=2)
 
     summary = aggregate_results(results)
     print_results_table(summary)

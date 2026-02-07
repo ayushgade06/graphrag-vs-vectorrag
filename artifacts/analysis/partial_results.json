@@ -10,7 +10,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 1.0,
-    "graph_recall": 1.0
+    "graph_recall": 1.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "MuSiQue",
@@ -23,7 +25,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 1.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "MuSiQue",
@@ -36,59 +40,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
-  },
-  {
-    "dataset": "MuSiQue",
-    "vector_f1": 0.0,
-    "graph_f1": 0.0,
-    "vector_oracle_f1": 0.0,
-    "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.0,
-    "graph_rouge": 0.0,
-    "vector_oracle_rouge": 0.0,
-    "graph_oracle_rouge": 0.0,
-    "vector_recall": 0.0,
-    "graph_recall": 0.0
-  },
-  {
-    "dataset": "MuSiQue",
-    "vector_f1": 0.0,
-    "graph_f1": 0.0,
-    "vector_oracle_f1": 0.0,
-    "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.0,
-    "graph_rouge": 0.0,
-    "vector_oracle_rouge": 0.0,
-    "graph_oracle_rouge": 0.0,
-    "vector_recall": 0.0,
-    "graph_recall": 0.0
-  },
-  {
-    "dataset": "MuSiQue",
-    "vector_f1": 0.0,
-    "graph_f1": 0.0,
-    "vector_oracle_f1": 0.0,
-    "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.0,
-    "graph_rouge": 0.0,
-    "vector_oracle_rouge": 0.0,
-    "graph_oracle_rouge": 0.0,
-    "vector_recall": 0.0,
-    "graph_recall": 0.0
-  },
-  {
-    "dataset": "MuSiQue",
-    "vector_f1": 0.0,
-    "graph_f1": 0.0,
-    "vector_oracle_f1": 0.0,
-    "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.0,
-    "graph_rouge": 0.0,
-    "vector_oracle_rouge": 0.0,
-    "graph_oracle_rouge": 0.0,
-    "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "MuSiQue",
@@ -101,7 +55,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 1.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "MuSiQue",
@@ -114,7 +70,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "MuSiQue",
@@ -127,7 +85,69 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 1.0
+  },
+  {
+    "dataset": "MuSiQue",
+    "vector_f1": 0.0,
+    "graph_f1": 0.0,
+    "vector_oracle_f1": 0.0,
+    "graph_oracle_f1": 0.0,
+    "vector_rouge": 0.0,
+    "graph_rouge": 0.0,
+    "vector_oracle_rouge": 0.0,
+    "graph_oracle_rouge": 0.0,
+    "vector_recall": 0.0,
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
+  },
+  {
+    "dataset": "MuSiQue",
+    "vector_f1": 0.0,
+    "graph_f1": 0.0,
+    "vector_oracle_f1": 0.0,
+    "graph_oracle_f1": 0.0,
+    "vector_rouge": 0.0,
+    "graph_rouge": 0.0,
+    "vector_oracle_rouge": 0.0,
+    "graph_oracle_rouge": 0.0,
+    "vector_recall": 0.0,
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
+  },
+  {
+    "dataset": "MuSiQue",
+    "vector_f1": 0.0,
+    "graph_f1": 0.0,
+    "vector_oracle_f1": 1.0,
+    "graph_oracle_f1": 0.0,
+    "vector_rouge": 0.0,
+    "graph_rouge": 0.0,
+    "vector_oracle_rouge": 0.0,
+    "graph_oracle_rouge": 0.0,
+    "vector_recall": 1.0,
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
+  },
+  {
+    "dataset": "MuSiQue",
+    "vector_f1": 0.0,
+    "graph_f1": 0.0,
+    "vector_oracle_f1": 0.0,
+    "graph_oracle_f1": 0.0,
+    "vector_rouge": 0.0,
+    "graph_rouge": 0.0,
+    "vector_oracle_rouge": 0.0,
+    "graph_oracle_rouge": 0.0,
+    "vector_recall": 0.0,
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -140,7 +160,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -153,7 +175,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "WikiMQA",
@@ -166,7 +190,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -179,7 +205,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 1.0,
-    "graph_recall": 1.0
+    "graph_recall": 1.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -192,7 +220,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -205,7 +235,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -218,7 +250,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -231,7 +265,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -244,7 +280,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "WikiMQA",
@@ -257,72 +295,84 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "NarrativeQA",
     "vector_f1": 0.4000000000000001,
-    "graph_f1": 0.4000000000000001,
+    "graph_f1": 0.3529411764705882,
     "vector_oracle_f1": 0.0,
     "graph_oracle_f1": 0.0,
     "vector_rouge": 0.3,
-    "graph_rouge": 0.3,
+    "graph_rouge": 0.3529411764705882,
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
-    "vector_f1": 0.2105263157894737,
-    "graph_f1": 0.1904761904761905,
+    "vector_f1": 0.2222222222222222,
+    "graph_f1": 0.19999999999999998,
     "vector_oracle_f1": 0.0,
     "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.2105263157894737,
-    "graph_rouge": 0.1904761904761905,
+    "vector_rouge": 0.2222222222222222,
+    "graph_rouge": 0.19999999999999998,
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
-    "vector_f1": 0.2,
-    "graph_f1": 0.14285714285714288,
+    "vector_f1": 0.0,
+    "graph_f1": 0.0,
     "vector_oracle_f1": 0.0,
     "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.2,
+    "vector_rouge": 0.0,
     "graph_rouge": 0.0,
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
     "vector_f1": 0.0909090909090909,
-    "graph_f1": 0.0909090909090909,
+    "graph_f1": 0.09523809523809525,
     "vector_oracle_f1": 0.0,
     "graph_oracle_f1": 0.0,
     "vector_rouge": 0.0909090909090909,
-    "graph_rouge": 0.0909090909090909,
+    "graph_rouge": 0.09523809523809525,
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
-    "vector_f1": 0.11764705882352941,
+    "vector_f1": 0.0,
     "graph_f1": 0.11764705882352941,
     "vector_oracle_f1": 0.0,
     "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.11764705882352941,
+    "vector_rouge": 0.0,
     "graph_rouge": 0.11764705882352941,
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
@@ -335,7 +385,24 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
+  },
+  {
+    "dataset": "NarrativeQA",
+    "vector_f1": 0.0,
+    "graph_f1": 0.18181818181818182,
+    "vector_oracle_f1": 0.0,
+    "graph_oracle_f1": 0.0,
+    "vector_rouge": 0.0,
+    "graph_rouge": 0.18181818181818182,
+    "vector_oracle_rouge": 0.0,
+    "graph_oracle_rouge": 0.0,
+    "vector_recall": 0.0,
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
@@ -348,33 +415,24 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
-  },
-  {
-    "dataset": "NarrativeQA",
-    "vector_f1": 0.0,
-    "graph_f1": 0.0,
-    "vector_oracle_f1": 0.0,
-    "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.0,
-    "graph_rouge": 0.0,
-    "vector_oracle_rouge": 0.0,
-    "graph_oracle_rouge": 0.0,
-    "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "NarrativeQA",
     "vector_f1": 0.13333333333333333,
-    "graph_f1": 0.13333333333333333,
+    "graph_f1": 0.14285714285714288,
     "vector_oracle_f1": 0.0,
     "graph_oracle_f1": 0.0,
     "vector_rouge": 0.13333333333333333,
-    "graph_rouge": 0.13333333333333333,
+    "graph_rouge": 0.14285714285714288,
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "NarrativeQA",
@@ -387,7 +445,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -400,7 +460,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -413,7 +475,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -426,7 +490,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -439,7 +505,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -452,7 +520,24 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
+  },
+  {
+    "dataset": "Qasper",
+    "vector_f1": 0.0,
+    "graph_f1": 0.0,
+    "vector_oracle_f1": 0.0,
+    "graph_oracle_f1": 0.0,
+    "vector_rouge": 0.0,
+    "graph_rouge": 0.0,
+    "vector_oracle_rouge": 0.0,
+    "graph_oracle_rouge": 0.0,
+    "vector_recall": 1.0,
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "Qasper",
@@ -465,7 +550,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -478,7 +565,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 0.0,
+    "graph_ger": 0.0
   },
   {
     "dataset": "Qasper",
@@ -491,7 +580,9 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   },
   {
     "dataset": "Qasper",
@@ -504,19 +595,8 @@
     "vector_oracle_rouge": 0.0,
     "graph_oracle_rouge": 0.0,
     "vector_recall": 0.0,
-    "graph_recall": 0.0
-  },
-  {
-    "dataset": "Qasper",
-    "vector_f1": 0.0,
-    "graph_f1": 0.0,
-    "vector_oracle_f1": 0.0,
-    "graph_oracle_f1": 0.0,
-    "vector_rouge": 0.0,
-    "graph_rouge": 0.0,
-    "vector_oracle_rouge": 0.0,
-    "graph_oracle_rouge": 0.0,
-    "vector_recall": 0.0,
-    "graph_recall": 0.0
+    "graph_recall": 0.0,
+    "vector_ger": 1.0,
+    "graph_ger": 1.0
   }
 ]

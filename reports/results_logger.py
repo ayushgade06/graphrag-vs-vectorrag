@@ -23,12 +23,14 @@ def aggregate_results(results):
             "graph_oracle_f1": round(sum(_get(r, "graph_oracle_f1") for r in rows) / n, 4),
 
             "vector_rouge": round(sum(_get(r, "vector_rouge") for r in rows) / n, 4),
-            "vector_oracle_rouge": round(sum(_get(r, "vector_oracle_rouge") for r in rows) / n, 4),
             "graph_rouge": round(sum(_get(r, "graph_rouge") for r in rows) / n, 4),
-            "graph_oracle_rouge": round(sum(_get(r, "graph_oracle_rouge") for r in rows) / n, 4),
 
             "vector_recall": round(sum(_get(r, "vector_recall") for r in rows) / n, 4),
             "graph_recall": round(sum(_get(r, "graph_recall") for r in rows) / n, 4),
+
+            # ✅ NEW METRIC
+            "vector_ger": round(sum(_get(r, "vector_ger") for r in rows) / n, 4),
+            "graph_ger": round(sum(_get(r, "graph_ger") for r in rows) / n, 4),
         }
 
         summary[dataset]["delta_f1_llm"] = round(
@@ -47,6 +49,7 @@ def print_results_table(summary):
         f"{'Vec Or F1':<9} | {'Gr Or F1':<9} | "
         f"{'Vec RG':<7} | {'Gr RG':<7} | "
         f"{'Vec Rec':<7} | {'Gr Rec':<7} | "
+        f"{'Vec GER':<7} | {'Gr GER':<7} | "
         f"{'ΔF1':<6} | {'ΔRG':<6}"
     )
     print(header)
@@ -59,5 +62,6 @@ def print_results_table(summary):
             f"{m['vector_oracle_f1']:<9} | {m['graph_oracle_f1']:<9} | "
             f"{m['vector_rouge']:<7} | {m['graph_rouge']:<7} | "
             f"{m['vector_recall']:<7} | {m['graph_recall']:<7} | "
+            f"{m['vector_ger']:<7} | {m['graph_ger']:<7} | "
             f"{m['delta_f1_llm']:<6} | {m['delta_rouge_llm']:<6}"
         )
